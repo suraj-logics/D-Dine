@@ -1,0 +1,53 @@
+<ion-content fullscreen padding scroll-y="false">
+  <div class="first clearfix" #firstSlide>
+    <div class="img-wrapper">
+      <img src="../../assets/Onboarding-1.png"/>
+    </div>
+    <div class="bg-white">
+      <h2>Welcome</h2>
+      <p>The only thing we love more than food is you!.</p>
+      <ion-grid>
+        <ion-row>
+          <ion-col (click) = "onSkipIntro()" size="4">
+            Skip
+          </ion-col>
+          <ion-col size="4">
+            <span class="pager active-pager">
+            </span>
+            <span class="pager">
+            </span>
+          </ion-col>
+          <ion-col size="4" (click)="showSecondSlide()">
+            Next
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
+  <div class="second clearfix"  #secondSlide>
+    <div class="img-wrapper">
+      <img src="../../assets/Onboarding-3.png"/>
+    </div>
+    <div class="bg-white">
+      <h2>Order On Phone </h2>
+      <p>order your favorite food at your table with your mobile.</p>
+      <ion-grid>
+        <ion-row>
+          <ion-col (click)="showFirstSlide()" size="4">
+            Previous
+          </ion-col>
+          <ion-col size="4">
+            <span class="pager">
+            </span>
+            <span class="pager active-pager">
+            </span>
+          </ion-col>
+          <ion-col [routerLink]="['/login']"  size="4">
+            Next
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

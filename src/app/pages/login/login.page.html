@@ -1,0 +1,62 @@
+
+
+<ion-content>
+  <ion-card class="bg-abstract">
+    <ion-card-header>
+     
+      <ion-card-subtitle class='titleHeader wt' >Welcome Back!</ion-card-subtitle>
+      
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-card class="sign-in-card">
+        <ion-card-header class="mrg">
+          <ion-card-title class='titleHeader orgColor'>Sign In</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          <ion-grid>
+            <ion-row [ngClass] = "iseEmailActive === true ? 'active-row' : ''">
+              <ion-col size="2" class="ion-text-center icon-wrapper">
+                <ion-icon name="mail"></ion-icon>
+              </ion-col>
+              <ion-col size="10">
+                <ion-item lines="none">
+                  <ion-input [(ngModel)] = "userEmail" (ionFocus) = "iseEmailActive = true;isPasswordActive = false;" type="email" placeholder="EMAIL"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row [ngClass] = "isPasswordActive === true ? 'active-row' : ''">
+              <ion-col size="2" class="ion-text-center icon-wrapper">
+                <ion-icon name="lock-open"></ion-icon>
+              </ion-col>
+              <ion-col size="10">
+                <ion-item lines="none">
+                  <ion-input class="password-field" [(ngModel)] = "userPassword" (ionFocus) = "isPasswordActive = true;iseEmailActive = false;" [type]="switchPassword" placeholder="PASSWORD"></ion-input>
+                  <ion-icon class="password-toggle" [name]="iconName" (click)="changePassType()"></ion-icon>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+          <ion-button shape="round" class="sign-in-button" routerLink='/dashboard' >SIGN IN</ion-button>
+          <div class="btn-center">
+            <button class="loginBtn loginBtn--google">
+              Login with Google
+            </button>
+          </div>
+
+          <div class="forgot-pass">
+            <p>Forgot Password?</p>
+          </div>
+
+          <div class="sign-in">
+            <p>Don't have an account? <span routerLink='/register' >Register Now</span></p>
+          </div>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

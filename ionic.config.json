@@ -1,0 +1,7 @@
+{
+  "name": "Resto",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
