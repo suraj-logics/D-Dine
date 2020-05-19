@@ -15,6 +15,7 @@
         </ion-card-header>
       
         <ion-card-content>
+          <form [formGroup]="registerform" (ngSubmit)="onRegister()">
           <ion-grid>
             <ion-row [ngClass] = "iseEmailActive === true ? 'active-row' : ''">
               <ion-col size="2" class="ion-text-center icon-wrapper">
@@ -22,8 +23,14 @@
               </ion-col>
               <ion-col size="10">
                 <ion-item lines="none">
-                  <ion-input [(ngModel)] = "userEmail" (ionFocus) = "iseEmailActive = true;isPasswordActive = false;" type="email" placeholder="EMAIL"></ion-input>
+                  <ion-input formControlName="email" (ionFocus) = "iseEmailActive = true;isPasswordActive = false;" type="email" placeholder="EMAIL"></ion-input>
                 </ion-item>
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.required">
+                  Email is required.
+                </span>
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.email">
+                 Please enter valid email.
+                </span>
               </ion-col>
             </ion-row>
             <ion-row [ngClass] = "isPasswordActive === true ? 'active-row' : ''">
@@ -32,9 +39,12 @@
               </ion-col>
               <ion-col size="10">
                 <ion-item lines="none">
-                  <ion-input class="password-field" [(ngModel)] = "userPassword" (ionFocus) = "isPasswordActive = true;iseEmailActive = false;" [type]="switchPassword" placeholder="PASSWORD"></ion-input>
+                  <ion-input class="password-field" formControlName="password" (ionFocus) = "isPasswordActive = true;iseEmailActive = false;" [type]="switchPassword" placeholder="PASSWORD"></ion-input>
                   <ion-icon class="password-toggle" [name]="iconName" (click)="changePassType()"></ion-icon>
                 </ion-item>
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.password.errors?.required">
+                  Password is required.
+                </span>
               </ion-col>
             </ion-row>
             <ion-row [ngClass] = "isPasswordActive === true ? 'active-row' : ''">
@@ -43,15 +53,21 @@
               </ion-col>
               <ion-col size="10">
                 <ion-item lines="none">
-                  <ion-input class="password-field" [(ngModel)] = "userPassword" (ionFocus) = "isPasswordActive = true;iseEmailActive = false;" [type]="switchPassword" placeholder="CONFIRM PASSWORD"></ion-input>
+                  <ion-input class="password-field" formControlName="confirmpassword" (ionFocus) = "isPasswordActive = true;iseEmailActive = false;" [type]="switchPassword" placeholder="CONFIRM PASSWORD"></ion-input>
                   <ion-icon class="password-toggle" [name]="iconName" (click)="changePassType()"></ion-icon>
                 </ion-item>
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.confirmpassword.errors?.required">
+                  Confirm Password is required.
+                </span>
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.confirmpassword.errors?.compare">
+                  Confirm Password should match.
+                </span>
               </ion-col>
             </ion-row>
           </ion-grid>
 
-          <ion-button shape="round" class="sign-in-button" >SIGN UP</ion-button>
-          
+          <ion-button type="submit" shape="round" class="sign-in-button" >SIGN UP</ion-button>
+          </form>
 
           <div class="sign-in">
             <p>Already have a account? <span  routerLink='/login' >Login</span></p>
