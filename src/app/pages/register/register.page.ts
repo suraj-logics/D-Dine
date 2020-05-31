@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { RxwebValidators } from '@rxweb/reactive-form-validators'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,8 +12,9 @@ import { RxwebValidators } from '@rxweb/reactive-form-validators'
 export class RegisterPage implements OnInit {
   private registerform: FormGroup;
   isSubmitted = false;
-
-  constructor(private formBuilder: FormBuilder) {
+  type:string='eye';
+  type1:string='eye';
+  constructor(private formBuilder: FormBuilder,private router:Router) {
     this.registerform = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -26,7 +28,7 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
-  onRegister() {
+  signUP() {
     this.isSubmitted = true;
     if (!this.registerform.valid) {
       console.log('Please provide all the required values!')
@@ -36,4 +38,12 @@ export class RegisterPage implements OnInit {
     }
   }
 
+  changeType(type){
+    if(type=='eye')this.type='eye-off';
+    if(type=='eye-off') this.type='eye';
+  }
+  psChangeType(type){
+    if(type=='eye')this.type1='eye-off';
+    if(type=='eye-off') this.type1='eye';
+  }
 }

@@ -1,82 +1,151 @@
-ion-content{
-    main .inner-scroll{
-        padding: 0 !important;
-    }
-    div{
-        padding: 0;
-        margin: 0 !important;
-        text-align: center;
-    }
-    .bg-white{
+// ion-content{
+//     --background:#ffc409;
+//     main .inner-scroll{
+//         padding: 0 !important;
+        
+//     }
+//     div{
+//         padding: 0;
+//         margin: 0 !important;
+//         text-align: center;
+//     }page
+//     .bg-white{
+//         background: white;
+//         // font-family: 'Poppins';
+//         width: 100vw;
+//         height: 40vh;
+//         position: fixed;
+//         bottom: 0;
+//         left: 0;
+//         padding: 25px;
+//         border-radius: 40px 40px 0 0;
+//         p{
+//             font-weight: 600;
+//             text-align: left;
+//     margin-left: 5px;
+
+//         }
+//     }
+//     .img-wrapper{
+//         width: 100vw;
+//         height: 60vh;
+//         position: absolute;
+//         top: 0;
+//         left: 0;
+//         background: #ffc409;
+//     }
+//     h2{
+//         color: #1C1A1A;
+//         font-size: 8vw;
+//     font-weight: 900;
+//     font-family: sans-serif;
+//     text-align: left;
+//     margin: 6px;
+//     }
+//     p{
+//         color: #707070;
+//         font-size: 14px;
+//         font-weight: 500;
+//     }
+//     ion-grid{
+//         //margin-top: 12vh;
+//         .pager{
+//             width: 14px;
+//             height: 14px;
+//             background: #E8E8E8;
+//             display: inline-block;
+//             border-radius: 50%;
+//             margin: 4px;
+//         }
+//         .active-pager{
+//             background: var(--ion-color-warning);
+//         }
+//     }
+//     ion-col{
+//         outline: none;
+//         color: #1C1A1A;
+//         font-size: 16px;
+//         &:nth-child(1){
+//             text-align: left;
+//         }
+//         &:nth-child(2){
+//             text-align: center;
+//         }
+//         &:nth-child(3){
+//             text-align: right;
+//         }
+//     }
+// }
+// img{
+//     width: 100%;
+// }
+// .first{
+//     z-index: 2;
+//     position: absolute;
+// }
+// .second{
+//     z-index: 1;
+//     position: absolute;
+// }
+
+ion-slides {
+    height: 100%;
+    background: #ffc409;
+  }
+  .slide{
+      width: 100%;
+      height: 100%;
+      .div1{
+          height: 60%;
+          img{
+            width: 100%;
+            height: 90%;
+          }
+          
+      }
+      .div2{
+        height: 70vw;
         background: #ffffff;
-        // font-family: 'Poppins';
-        width: 100vw;
-        height: 40vh;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        padding-left: 25px;
-        padding-right: 25px;
-        border-radius: 40px 40px 0 0;
-        p{
-            font-weight: 600;
-        }
-    }
-    .img-wrapper{
-        width: 100vw;
-        height: 60vh;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: #ffffff;
-    }
-    h2{
-        color: #1C1A1A;
-        font-size: 24px;
-        font-weight: 600;
-    }
-    p{
-        color: #707070;
-        font-size: 14px;
-        font-weight: 500;
-    }
-    ion-grid{
-        margin-top: 12vh;
-        .pager{
-            width: 14px;
-            height: 14px;
-            background: #E8E8E8;
-            display: inline-block;
-            border-radius: 50%;
-            margin: 4px;
-        }
-        .active-pager{
-            background: var(--ion-color-warning);
-        }
-    }
-    ion-col{
-        outline: none;
-        color: #1C1A1A;
-        font-size: 16px;
-        &:nth-child(1){
+        border-radius: 40px;
+        width: 100%;
+        padding: 25px;
+         p{
+            color: #707070;
+            font-size: 3vw;
+            font-weight: 500;
             text-align: left;
+            margin-left: 5px;
+         }
+         h2{
+            color: #1C1A1A;
+            font-size: 8vw;
+        font-weight: 900;
+        font-family: sans-serif;
+        text-align: left;
+        margin: 6px;
         }
-        &:nth-child(2){
-            text-align: center;
-        }
-        &:nth-child(3){
-            text-align: right;
-        }
+       
+       
     }
+  }
+  .pager{
+    width: 15px;
+    height: 6px;
+    background: #ffffff8c;
+    display: inline-block;
+    border-radius: 29%;
+    margin: 4px
 }
-img{
-    width: 100%;
+
+.active-pager{
+    width: 26px!important;
+    background: #ffffffd4!important;
 }
-.first{
-    z-index: 2;
-    position: absolute;
-}
-.second{
+.mainPager{
+    position: fixed;
+    bottom: 42%;
     z-index: 1;
-    position: absolute;
+    width: 100%;
+    /* margin: auto; */
+    text-align: center;
 }

@@ -17,7 +17,15 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'nearby',
+    loadChildren: () => import('./pages/nearby/nearby.module').then( m => m.NearbyPageModule)
+  },  {
+    path: 'verification',
+    loadChildren: () => import('./pages/verification/verification.module').then( m => m.VerificationPageModule)
   }
+
 ];
 @NgModule({
   imports: [

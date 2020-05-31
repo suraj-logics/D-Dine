@@ -1,11 +1,75 @@
-<ion-content fullscreen padding scroll-y="false">
+
+    <ion-content>
+      <ion-slides #slides [options]="slideOpts"  (ionSlideDidChange)="slideChanged()" >
+        <ion-slide >
+          <div class="slide">
+            <div class="div1">
+              <img src="../../assets/Onboarding-2.png"/>
+            </div>
+          <div class="div2">
+            <h2>Welcome to</h2>
+            <h2>D'Order</h2>
+            <p>The only thing we love more than food is you!.</p>
+            <button class="button ion-activatable ripple-parent" (click)='CS.navigate("/login")'>Skip
+              <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+            </button>
+
+          </div>
+         
+          </div>
+        </ion-slide>
+        <ion-slide  >
+          <div class="slide">
+            <div class="div1">
+              <img src="../../assets/pickup.png"/>
+            </div>
+          <div class="div2">
+            <h2>Pick up your Order</h2>
+            <h2>On the way</h2>
+            <p>The only thing we love more than food is you!.</p>
+            <button class="button ion-activatable ripple-parent" (click)='CS.navigate("/login")'>Skip
+              <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+            </button>
+
+          </div>
+         
+          </div>
+        </ion-slide>
+        <ion-slide>
+          <div class="slide">
+            <div class="div1">
+              <img src="../../assets/table.png"/>
+            </div>
+          <div class="div2">
+            <h2>Order & Let's eat</h2>
+            <h2>Delicious food</h2>
+            <p>order your favorite food at your table with your mobile.</p>
+            <button class="button ion-activatable ripple-parent" (click)='CS.navigate("/login")'>Next
+              <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+            </button>
+          </div>
+         
+          </div>
+        </ion-slide>
+      </ion-slides>
+      <div class="mainPager">
+        <span class="pager {{active==0?'active-pager':''}}">
+        </span>
+        <span class="pager {{active==1?'active-pager':''}}">
+        </span>
+        <span class="pager {{active==2?'active-pager':''}}">
+        </span>
+      </div>
+    </ion-content>
+
+
+
+
+<!-- 
+<ion-content fullscreen padding scroll-y="false" >
   <div class="first clearfix" #firstSlide>
     <div class="img-wrapper">
-      <img src="../../assets/Onboarding-1.png"/>
-    </div>
-    <div class="bg-white">
-      <h2>Welcome</h2>
-      <p>The only thing we love more than food is you!.</p>
+      <img src="../../assets/Onboarding-2.png"/>
       <ion-grid>
         <ion-row>
           <ion-col (click) = "onSkipIntro()" size="4">
@@ -22,6 +86,13 @@
           </ion-col>
         </ion-row>
       </ion-grid>
+    </div>
+    <div class="bg-white">
+      <h2>Order & Let's eat</h2>
+      <h2>Delicious food</h2>
+      <p>The only thing we love more than food is you!.</p>
+      <ion-button>Skip</ion-button>
+      
     </div>
   </div>
 
@@ -50,4 +121,4 @@
       </ion-grid>
     </div>
   </div>
-</ion-content>
+</ion-content> -->

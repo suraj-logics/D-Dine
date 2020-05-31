@@ -1,0 +1,153 @@
+ion-content{
+    background: url('../../../assets/background.jpg');
+}
+
+.imageDiv
+{
+    width: 75%;
+    margin: auto;
+    margin-top: 30%;
+}
+h2{
+    color: #1C1A1A;
+    font-size: 24px;
+    font-weight: 600;
+}
+p{
+    color: #707070;
+    font-size: 14px;
+    font-weight: 500;
+}
+.textDiv{
+    text-align: center;
+}
+
+
+.tryBtn{
+    margin-top: 15PX;
+
+}
+.col3{
+    img{
+        height: 75px;
+        width: 100%; 
+    }
+}
+
+.gridCss{
+    padding: 0!important;
+    height: 75px;
+    ion-row{
+        padding: 0!important;
+        
+    }
+    
+}
+.myLocationCard{
+  
+    color: white;
+    min-height: 131px;
+    border-radius: 10px;
+   // background: linear-gradient(180deg, #50c8ff, #3171e0);
+   ion-col{
+       padding: 0!important;
+   }
+   .yourLoc{
+    text-align: center;
+    padding: 3px;
+    //color: #FF00FF;
+    
+   }
+   img{
+       height: 131px;
+       width: 100%;
+   }
+   h3{
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0;
+   }
+   .address{
+    p{
+        margin-left: 35px!important;
+        color: white;
+        font-weight: 700;
+        font-family: unset;
+    }
+   }
+}
+.fullDiv{
+    height: 90%;
+    background-color: #3dc2ff;
+    background-image: linear-gradient(689deg, #3dc2ff 0%, #6370ff 55%);
+}
+.col9{
+    height: 75px;
+    width: 100%;
+    background-color: #bf3a30;
+    background-image: linear-gradient(689deg, #82140c 0%, #15121f 55%);
+    h3{
+        margin: 3px;
+        font-size: 19px;
+        font-weight: bolder;
+        margin-left: 7px;
+        color: white;
+    }
+    p{
+        font-size: 11px;
+        margin: 0;
+        color: whitesmoke;
+        margin-left: 7px;
+    }
+}
+.nearText{
+    text-align: center;
+    h2{
+        margin-left: 16px;
+        color:red;
+        font-size: 15px;
+        color: slategrey;
+    }
+}
+
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:20px;
+    color:#ffc700;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+// .rate > input:checked ~ label {
+//     color: #ffc700;    
+// }
+// .rate:not(:checked) > label:hover,
+// .rate:not(:checked) > label:hover ~ label {
+//     color: #deb217;  
+// }
+// .rate > input:checked + label:hover,
+// .rate > input:checked + label:hover ~ label,
+// .rate > input:checked ~ label:hover,
+// .rate > input:checked ~ label:hover ~ label,
+// .rate > label:hover ~ input:checked ~ label {
+//     color: #c59b08;
+// }
+.overCard{
+    margin: 5px;
+    margin-top: 20px;
+    background: whitesmoke;
+    border-radius: 30px 30px 0px 0px;
+}
