@@ -4,9 +4,9 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { VerificationPageRoutingModule } from './verification-routing.module';
+import { ForgotPasswordPageRoutingModule } from './forgot-password-routing.module';
 
-import { VerificationPage } from './verification.page';
+import { ForgotPasswordPage } from './forgot-password.page';
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { VerificationPage } from './verification.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    VerificationPageRoutingModule
+    ForgotPasswordPageRoutingModule
   ],
-  declarations: [VerificationPage]
+  declarations: [ForgotPasswordPage]
 })
-export class VerificationPageModule {}
+export class ForgotPasswordPageModule {}

@@ -1,58 +1,106 @@
-
-<ion-content class="main-login-container">
+<ion-content class="main-login-container" *ngIf="show">
   <div class="final-div">
-  <div class="div1">
-  
-  </div>
-  <div class="div2">
-    <div class="loginDiv">
-      <h3  class="titleHeader">Login</h3> 
-      <!-- <h3 style="float: right;" class="{{hLogin==false?'active-h':''}}" (click)='hClick(false)'>Signup</h3>  -->
-     </div>
-    <div class="form">
-    <!-- <form action=""> -->
-      <ion-grid>
-        <ion-row>
-          <ion-col size="1">
-            <ion-icon name="phone-portrait-outline" style="color: #ffc409" ></ion-icon>
-          </ion-col>
-          <ion-col size="10">
-            <ion-item >
-              <ion-input   type="number" placeholder="Moblie No." min="0" maxlength="5"></ion-input>
-              <ion-icon name="checkmark-circle" style="color: #ffc409" slot="end"></ion-icon>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="1">
-            <ion-icon name="apps"  style="color: #ff5c6c"></ion-icon>
-          </ion-col>
-          <ion-col size="10">
-            <ion-item >
-              <ion-input  type="Password" placeholder="Password"></ion-input>
-              <ion-icon name="eye" slot="end" style="color: #ff5c6c"></ion-icon>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-      
-      </ion-grid>
-      <p>Forgot Password!</p>
-      <div class="btnDiv">
-        <button  class="button ion-activatable ripple-parent" (click)='onLogin()'>Login
-          <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-        </button>
-        <!-- <button  *ngIf='hLogin==false' class="button ion-activatable ripple-parent" (click)='signUp()'>Sign Up
+    <div class="div1">
+
+    </div>
+    <div class="div2">
+      <div class="loginDiv">
+        <h3 class="titleHeader">Login</h3>
+        <!-- <h3 style="float: right;" class="{{hLogin==false?'active-h':''}}" (click)='hClick(false)'>Signup</h3>  -->
+      </div>
+      <form class="form" [formGroup]="loginform" (ngSubmit)="onLogin()">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="1">
+              <ion-icon name="phone-portrait-outline" style="color: #ffc409"></ion-icon>
+            </ion-col>
+            <ion-col size="10">
+              <ion-item>
+                <ion-input type="text" placeholder="Moblie No." min="0" maxlength="10" formControlName="phone_number">
+                </ion-input>
+                <ion-icon name="checkmark-circle" style="color: #ffc409" slot="end"></ion-icon>
+              </ion-item>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.phone_number.errors?.required">
+                Mobile Number is required.
+              </span>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.phone_number.errors?.minlength">
+                Please enter 10 digit mobile number.
+              </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="1">
+              <ion-icon name="apps" style="color: #ff5c6c"></ion-icon>
+            </ion-col>
+            <ion-col size="10">
+              <ion-item>
+                <ion-input type="{{type=='eye'?'Password':'text'}}" placeholder="Password" formControlName="password"></ion-input>
+                <ion-icon name="{{type}}" slot="end" (click)='changeType(type)' style="color: #ff5c6c"></ion-icon>
+              </ion-item>
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.password.errors?.required">
+                Password is required.
+              </span>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+        <p (click)="toggle()">Forgot Password!</p>
+        <div class="btnDiv">
+          <button class="button ion-activatable ripple-parent">Login
+            <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+          </button>
+          <!-- <button  *ngIf='hLogin==false' class="button ion-activatable ripple-parent" (click)='signUp()'>Sign Up
           <ion-ripple-effect type="unbounded"></ion-ripple-effect>
         </button> -->
-        <div class="sign-in">
-          <p>Don't have an account? <span routerLink='/register' >Register Now</span></p>
+          <div class="sign-in">
+            <p>Don't have an account? <span routerLink='/register'>Register Now</span></p>
+          </div>
         </div>
-      </div>
+      </form>
+    </div>
+  </div>
+</ion-content>
 
-  <!-- </form> -->
+
+<ion-content class="main-login-container" *ngIf="!show">
+  <div class="final-div">
+    <div class="div1">
+
+    </div>
+    <div class="div2">
+      <div class="loginDiv">
+        <h3 class="titleHeader">Reset Password</h3>
+        <!-- <h3 style="float: right;" class="{{hLogin==false?'active-h':''}}" (click)='hClick(false)'>Signup</h3>  -->
+      </div>
+      <form class="form"  [formGroup]="forgotform" (ngSubmit)="onReset()">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="1">
+              <ion-icon name="phone-portrait-outline" style="color: #ffc409"></ion-icon>
+            </ion-col>
+            <ion-col size="10">
+              <ion-item>
+                <ion-input type="text" placeholder="Moblie No." min="0" maxlength="10" formControlName="phone_number">
+                </ion-input>
+                <ion-icon name="checkmark-circle" style="color: #ffc409" slot="end"></ion-icon>
+              </ion-item>
+              <span class="error ion-padding" *ngIf="isSubmitted1 && errorControl1.phone_number.errors?.required">
+                Mobile Number is required.
+              </span>
+              <span class="error ion-padding" *ngIf="isSubmitted1 && errorControl1.phone_number.errors?.minlength">
+                Please enter 10 digit mobile number.
+              </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <div class="btnDiv">
+          <button class="button ion-activatable ripple-parent">Generate otp
+            <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-  </div>
-</div>
 </ion-content>

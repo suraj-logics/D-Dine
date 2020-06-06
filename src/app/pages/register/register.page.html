@@ -9,7 +9,7 @@
       <h3  class="titleHeader">Sign Up</h3> 
       <!-- <h3 style="float: right;" class="{{hLogin==false?'active-h':''}}" (click)='hClick(false)'>Signup</h3>  -->
      </div>
-    <div class="form">
+    <form class="form" [formGroup]="registerform" (ngSubmit)="signup()">
     <!-- <form action=""> -->
       <ion-grid>
         <ion-row>
@@ -18,9 +18,12 @@
           </ion-col>
           <ion-col size="10">
             <ion-item >
-              <ion-input   type="text" placeholder="Name" min="0" maxlength="5"></ion-input>
+              <ion-input   type="text" placeholder="Name" formControlName="name"></ion-input>
               <ion-icon name="checkmark-circle" style="color: #ff5c6c" slot="end"></ion-icon>
             </ion-item>
+            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.name.errors?.required">
+              Name is required.
+            </span>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -29,9 +32,15 @@
           </ion-col>
           <ion-col size="10">
             <ion-item >
-              <ion-input   type="number" placeholder="Moblie No." min="0" maxlength="5"></ion-input>
+              <ion-input type="text" placeholder="Moblie No." min="0" maxlength="10" formControlName="phone_number"></ion-input>
               <ion-icon name="checkmark-circle" style="color: #ffc409" slot="end"></ion-icon>
             </ion-item>
+            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.phone_number.errors?.required">
+              Mobile Number is required.
+            </span>
+            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.phone_number.errors?.minlength">
+              Please enter 10 digit mobile number.
+            </span>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -40,9 +49,15 @@
           </ion-col>
           <ion-col size="10">
             <ion-item >
-              <ion-input   type="text" placeholder="Email" min="0" maxlength="5"></ion-input>
+              <ion-input   type="text" placeholder="Email" formControlName="email"></ion-input>
               <ion-icon name="checkmark-circle" style="color: #ff5c6c" slot="end"></ion-icon>
             </ion-item>
+            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.required">
+              Email is required.
+            </span>
+            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.email">
+              Please enter valid email.
+            </span>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -51,9 +66,12 @@
           </ion-col>
           <ion-col size="10">
             <ion-item >
-              <ion-input  type="{{type1=='eye'?'Password':'text'}}" placeholder="Password"></ion-input>
+              <ion-input  type="{{type1=='eye'?'Password':'text'}}" placeholder="Password" formControlName="password"></ion-input>
               <ion-icon name="{{type1}}" slot="end" (click)='psChangeType(type1)' style="color: #ffc409"></ion-icon>
             </ion-item>
+            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.password.errors?.required">
+              Password is required.
+            </span>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -62,14 +80,17 @@
           </ion-col>
           <ion-col size="10">
             <ion-item >
-              <ion-input  type="{{type=='eye'?'Password':'text'}}" placeholder="Confirm Password"></ion-input>
+              <ion-input  type="{{type=='eye'?'Password':'text'}}" placeholder="Confirm Password" formControlName="confirmpassword"></ion-input>
               <ion-icon name="{{type}}" (click)='changeType(type)'  slot="end" style="color: #ff5c6c"></ion-icon>
             </ion-item>
+            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.confirmpassword.errors?.compare">
+              Confirm Password and password should be same.
+            </span>
           </ion-col>
         </ion-row>
       </ion-grid>
       <div class="btnDiv">
-        <button  class="button ion-activatable ripple-parent" (click)='signUP()'>Sign Up
+        <button  class="button ion-activatable ripple-parent">Sign Up
           <ion-ripple-effect type="unbounded"></ion-ripple-effect>
         </button>
         <!-- <button  *ngIf='hLogin==false' class="button ion-activatable ripple-parent" (click)='signUp()'>Sign Up
@@ -81,7 +102,7 @@
       </div>
 
   <!-- </form> -->
-  </div>
+    </form>
   </div>
 </div>
 </ion-content>

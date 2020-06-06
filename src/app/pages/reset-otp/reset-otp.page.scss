@@ -1,0 +1,261 @@
+ion-content{
+    --ion-background-color:#F8FAFB;
+}
+.bg-abstract{
+    // font-family: 'Poppins';
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background-size: cover;
+    ion-card-header{
+        margin-top: 4%;
+        margin-bottom: 4%;
+        padding-left: 30px;
+    }
+    ion-card-content{
+        padding: 0;
+    }
+    // ion-card-title{
+      //  background-image: url(../../../assets/);
+    // }
+}
+.wt{
+    color: #666666!important;
+}
+.mrg{
+margin-top: 0%!important;
+margin-bottom: 0%!important;
+}
+.sign-in-card{
+    // font-family: 'Poppins';
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 40px 40px 0 0;
+    background: #F8FAFB;
+    padding: 20px;
+    margin: 0;
+    box-shadow: none;
+    ion-card-header{
+        margin-top: 5%;
+        margin-bottom: 5%;
+        padding-left: 0px;
+    }
+    ion-label{
+        color: #848484;
+    }
+    ion-row{
+        background: #EDF2F5;
+        &:nth-child(1){
+            border-radius: 8px 8px 0 0;
+        }
+        &:nth-child(2){
+            border-radius:0 0 8px 8px;
+        }
+    }
+    .active-row{
+        
+        box-shadow: 0 1px 0 #00000029;
+        background: #ffffff;
+
+        ion-item{
+            --background: #ffffff;
+        }
+    }
+    ion-item{
+        --background: #EDF2F5;
+    }
+}
+
+.icon-wrapper{
+    align-self: center;
+    padding-top: 2%;
+    ion-icon{
+        font-size: 2em;
+        color: #C6D3DB;
+    }
+}
+
+.button-login{
+    // font-family: 'Poppins';
+    //background: linear-gradient(148deg, #fc5b2f, #ffc033) !important;
+    color: #ffffff;
+    height: 56px;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 30px;
+    box-shadow: 0 7px 20px #2B04F933;
+    margin-top: 5%;
+}
+
+.forgot-pass{
+    // font-family: 'Poppins';
+    text-align: center;
+    color: #03A1F5;
+    //text-decoration: underline;
+    margin-top: 10%;
+}
+.btn-center{
+    margin-top: 50px;
+    text-align: center;
+}
+
+.sign-in-button{
+    width: 100% !important;
+    height: 55px !important;
+    //--background: linear-gradient(148deg, #fc5b2f, #ffc033) !important;
+    margin-top: 10%;
+    color: #666666;
+    font-weight: bold;
+}
+.sign-in{
+    // font-family: 'Poppins';
+    font-size: 12px;
+    color: #334557;
+    text-align: center;
+    margin-top: 10%;
+    span{    
+        color: #03A1F5;
+        //text-decoration: underline;
+    }
+}
+.orgColor{
+    color: orange;
+}
+.titleHeader{
+    text-align: center;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 70px;
+    letter-spacing: -0.04em;
+    /* color: #020814; */
+    font-family: Eina, "Helvetica Neue", Helvetica, sans-serif !important;
+    color:#fdec33;
+}
+
+.loginBtn {
+    box-sizing: border-box;
+    position: relative;
+    /* width: 13em;  - apply for fixed size */
+    margin: 0.2em;
+    padding: 0 15px 0 46px;
+    border: none;
+    text-align: left;
+    line-height: 34px;
+    white-space: nowrap;
+    border-radius: 0.2em;
+    font-size: 16px;
+    color: #FFF;
+  }
+  .loginBtn:before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 100%;
+  }
+  .loginBtn:focus {
+    outline: none;
+  }
+  .loginBtn:active {
+    box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+  }
+  
+/* Google */
+.loginBtn--google {
+    /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+    background: #DD4B39;
+  }
+  .loginBtn--google:before {
+    border-right: #BB3F30 1px solid;
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
+  }
+  .loginBtn--google:hover,
+  .loginBtn--google:focus {
+    background: #E74B37;
+  }
+  .error {
+    color: #D8000C;
+}
+
+
+////////////
+.whole-div{
+    height: 100%;width: 100%;
+  
+    text-align: center;
+    background-image: url(../../../assets/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+.first-div{
+    height: 40%; width: 100%;
+      
+}
+.second-div{
+    background-color: #f5f6f9;
+    height: 60%; width: 100%;
+    border-radius: 23px 22px 0 0;
+    -webkit-box-shadow: -2px 5px 34px 1px rgba(223,220,242,1);
+    -moz-box-shadow: -2px 5px 34px 1px rgba(223,220,242,1);
+    box-shadow: -2px 5px 34px 1px rgba(223,220,242,1);
+    padding-top: 4vw;
+    h3{
+        padding-top: 4vw;
+        padding-top: 3vw;
+        padding-bottom: 6vw;
+        font-size: 6vw;
+    }
+    input{
+        width: 9vw;
+        height: 13vw;
+        
+    }
+    ion-col{
+        --padding: 0;
+    }
+    input {
+        margin: 0 5px;
+        text-align: center;
+        line-height: 80px;
+        font-size: 40px;
+        border: solid 1px #ccc;
+        box-shadow: 0 0 5px #ccc inset;
+        outline: none;
+        //width: 20%;
+        transition: all .2s ease-in-out;
+        border-radius: 3px;
+        
+        &:focus {
+          border-color: purple;
+          box-shadow: 0 0 5px purple inset;
+        }
+        
+        &::selection {
+          background: transparent;
+        }
+        
+      }
+      .OTP-div{
+        width: 70%;
+         margin: auto;
+    }
+    .icon-div{
+        width: 15vw;
+        height: 15vw;
+        border-radius: 50px;
+        text-align: center;
+        margin: auto;
+        background: violet;
+        padding: 3vw;
+        ion-icon{
+            font-size: 8vw;
+        }
+    }
+}
+    .verify-btn{
+        border-radius: 29px!important;
+    margin-top: 10vw!important;
+    width: 54vw!important;
+    }
+}

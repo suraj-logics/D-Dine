@@ -7,11 +7,11 @@ import { UserService } from '../../../shared/services/user.service';
 import { error } from 'protractor';
 
 @Component({
-  selector: 'app-verification',
-  templateUrl: './verification.page.html',
-  styleUrls: ['./verification.page.scss'],
+  selector: 'app-reset-otp',
+  templateUrl: './reset-otp.page.html',
+  styleUrls: ['./reset-otp.page.scss'],
 })
-export class VerificationPage implements OnInit {
+export class ResetOtpPage implements OnInit {
   verifyForm: FormGroup;
   opt: any;
   isSubmitted = false;
@@ -39,14 +39,12 @@ export class VerificationPage implements OnInit {
       this.commonService.Toaster('Please enter otp!', 'danger')
       return false;
     } else {
-      this.userService.verifyOtp({ otp: str5, phone_number: localStorage.getItem('phone'), user_type: "u" }, '/authentication/verify-user').subscribe(res => {
+      this.userService.verifyOtp({ otp: str5, phone_number: localStorage.getItem('phone'), user_type: "u" }, '/authentication/verify-otp').subscribe(res => {
         this.commonService.Toaster('Otp Verification successfull!', 'success')
-        localStorage.removeItem('phone');
-        this.router.navigate(['login'])
+        this.router.navigateByUrl('forgot-password')
       }, error => {
         this.commonService.Toaster(error.error.message, 'danger')
       })
     }
   }
-
 }
