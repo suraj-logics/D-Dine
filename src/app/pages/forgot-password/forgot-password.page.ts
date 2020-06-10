@@ -19,7 +19,7 @@ export class ForgotPasswordPage implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private CM: CommonService, private router: Router, private userService: UserService, private auth: AuthService) {
     this.forgotform = this.formBuilder.group({
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(3)]],
     });
   }
 

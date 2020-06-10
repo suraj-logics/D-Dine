@@ -16,15 +16,15 @@
             </ion-col>
             <ion-col size="10">
               <ion-item>
-                <ion-input type="text" placeholder="Moblie No." min="0" maxlength="10" formControlName="phone_number">
+                <ion-input type="number" placeholder="Moblie No." maxlength="10" formControlName="phone_number" required>
                 </ion-input>
                 <ion-icon name="checkmark-circle" style="color: #ffc409" slot="end"></ion-icon>
               </ion-item>
               <span class="error ion-padding" *ngIf="isSubmitted && errorControl.phone_number.errors?.required">
-                Mobile Number is required.
+                Moblie No. is required.
               </span>
-              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.phone_number.errors?.minlength">
-                Please enter 10 digit mobile number.
+              <span class="error ion-padding" *ngIf="isSubmitted && errorControl.phone_number.errors?.pattern">
+                Please provide valid Moblie No.
               </span>
             </ion-col>
           </ion-row>
@@ -82,21 +82,21 @@
             </ion-col>
             <ion-col size="10">
               <ion-item>
-                <ion-input type="text" placeholder="Moblie No." min="0" maxlength="10" formControlName="phone_number">
+                <ion-input type="number" placeholder="Moblie No." maxlength="10" formControlName="phone_number" required>
                 </ion-input>
                 <ion-icon name="checkmark-circle" style="color: #ffc409" slot="end"></ion-icon>
               </ion-item>
               <span class="error ion-padding" *ngIf="isSubmitted1 && errorControl1.phone_number.errors?.required">
-                Mobile Number is required.
+                Moblie No. is required.
               </span>
-              <span class="error ion-padding" *ngIf="isSubmitted1 && errorControl1.phone_number.errors?.minlength">
-                Please enter 10 digit mobile number.
+              <span class="error ion-padding" *ngIf="isSubmitted1 && errorControl1.phone_number.errors?.pattern">
+                Please provide valid Moblie No.
               </span>
             </ion-col>
           </ion-row>
         </ion-grid>
         <div class="btnDiv">
-          <button class="button ion-activatable ripple-parent">Generate otp
+          <button class="button ion-activatable ripple-parent">Generate OTP
             <ion-ripple-effect type="unbounded"></ion-ripple-effect>
           </button>
         </div>

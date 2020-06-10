@@ -29,7 +29,7 @@
           </ion-row>
         </ion-grid>
       </div>
-      <button class="button verify-btn ion-activatable ripple-parent">Verify
+      <button class="button verify-btn ion-activatable ripple-parent" [disabled]="verifyForm.invalid">Verify
         <ion-ripple-effect type="unbounded"></ion-ripple-effect>
       </button>
     </form>
