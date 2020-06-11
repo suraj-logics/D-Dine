@@ -20,3 +20,17 @@ export class AuthGuard implements CanActivate {
   }
 
 }
+
+export class onboardingGuard implements CanActivate {
+
+  constructor(public auth: AuthService, private router: Router) { }
+
+  canActivate() {
+    if (this.auth.getLoggedUser()) {
+      return false;
+    } else {
+      this.router.navigateByUrl('/dashboard/tab1');
+    }
+  }
+
+}

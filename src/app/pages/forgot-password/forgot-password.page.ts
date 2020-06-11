@@ -39,13 +39,17 @@ export class ForgotPasswordPage implements OnInit {
       this.CM.Toaster('Please provide all the required values!', 'danger')
       return false;
     } else {
+      this.CM.presentLoading('');
       this.forgotform.value.user_type = "u"
       this.forgotform.value.phone_number = localStorage.getItem('phone')
       this.userService.resetPassword(this.forgotform.value, '/authentication/reset-password').subscribe((res: any) => {
         this.CM.Toaster('Password reset successfully!', 'success')
         localStorage.removeItem('phone');
-        this.router.navigateByUrl('login')
+        this.router.navigateByUrl('login');
+        this.CM.dismissLoading();
+
       }, error => {
+        this.CM.dismissLoading();
         this.CM.Toaster(error.error.message, 'danger')
       })
     }

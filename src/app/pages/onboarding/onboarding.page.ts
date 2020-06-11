@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { GestureController } from '@ionic/angular';
 import { Gesture, GestureConfig } from '@ionic/core';
 import { CommonService } from 'src/shared/services/common.service';
+import { AuthService } from 'src/shared/services/auth.service';
 
 @Component({
   selector: 'app-onboarding',
@@ -27,7 +28,16 @@ export class OnboardingPage implements OnInit {
     private element: ElementRef,
     private renderer: Renderer2,
     private ngZone: NgZone,
-    protected CS:CommonService  ) {
+    public CS:CommonService ,
+    public auth: AuthService 
+    ) {
+      CS.presentLoading('')
+      if(this.auth.getLoggedUser()){
+        router.navigateByUrl('/dashboard/tab1')
+        CS.dismissLoading();
+      }else{
+        CS.dismissLoading();
+      }
   }
 
   ngOnInit() {

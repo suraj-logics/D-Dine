@@ -214,18 +214,12 @@ margin-bottom: 0%!important;
     ion-col{
         --padding: 0;
     }
-    input {
-        margin: 0 5px;
-        text-align: center;
-        line-height: 80px;
-        font-size: 40px;
-        border: solid 1px #ccc;
-        box-shadow: 0 0 5px #ccc inset;
-        outline: none;
+    .inputs{
+       
         //width: 20%;
         transition: all .2s ease-in-out;
         border-radius: 3px;
-        
+        height:2vw!important;
         &:focus {
           border-color: purple;
           box-shadow: 0 0 5px purple inset;
@@ -235,6 +229,15 @@ margin-bottom: 0%!important;
           background: transparent;
         }
         
+      }
+      .T{
+        margin: 0 5px;
+        text-align: center;
+        line-height: 80px;
+        font-size: 40px;
+        border: solid 1px #ccc;
+        box-shadow: 0 0 5px #ccc inset;
+        outline: none;
       }
       .OTP-div{
         width: 70%;

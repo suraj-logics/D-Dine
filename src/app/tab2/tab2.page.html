@@ -1,18 +1,103 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar mode='ios'>
     <ion-title>
-     Order
+     {{currentPage | titlecase }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
+<!-- {{currentPage==='order'?'activeSeg':'notActive'}} -->
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-segment (ionChange)="segmentChanged($event)" [value]='currentPage' mode="ios">
+    <ion-segment-button value="cart" color='primary'>
+      <ion-icon name="cart" class=""></ion-icon>
+      <ion-label>Cart</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="order">
+      <ion-icon name="wine" class=""></ion-icon>
+      <ion-label>Order</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="history">
+      <ion-icon name="time" class=""></ion-icon>
+      <ion-label>History</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
-  <button (click)="onLogout()">Logout</button>
+  <div *ngIf='currentPage=="cart"&&CartList.length!=0' style="padding-bottom: 46vw;">
+      <ng-container *ngFor='let cat of CartList;let i=index'>
+      <div class="cartList">
+        <ion-grid>
+          <ion-row>
+            
+            <ion-col size='3'>
+             <div class='img-div'>
+              <img  [src]="cat.obj&&cat.obj.image?cat.obj.image:'../../../assets/no-item-image.svg'">
+             </div>
+            </ion-col>
+            <ion-col size='8' class="col1" >
+              <h2>{{cat.obj.name| slice:0:13}}<span *ngIf='cat.obj&&cat.obj.name.length>13'>...</span></h2>
+              <p class="p">₹ {{cat.obj.price}}</p>
+              <div>
+              </div>
+              <ion-grid class="choice">
+                <ion-row class="choice">
+                  <ng-container >
+                  <ion-col size="12" >
+                    <ion-label>{{cat.obj.description | slice:0:22}}<span *ngIf='cat.obj.description&&cat.obj.description.length>22'>..</span></ion-label>
+                  </ion-col>
+                  
+                </ng-container>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+            <ion-col size='1'>
+             
+             </ion-col>
+          </ion-row>
+        </ion-grid> 
+      
+        <div class="counter">
+          <ion-grid>
+            <ion-row>
+              <ion-col class="plus">
+                <button class="btn ion-activatable ripple-parent"  (click)='order(false,i)'>-
+                  <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+                 </button>
+                
+              </ion-col>
+              <ion-col  class="count">
+                <p>{{cat.obj.qty}}</p>
+              </ion-col>
+              <ion-col class="minus">
+                <button class="btn ion-activatable ripple-parent" (click)='order(true,i)' >+
+                  <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+                 </button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        
+        </div>
+       
+      </div>
+  </ng-container>
+</div>
+  
+   <div class="noOrder"  *ngIf='currentPage=="order" && Orders.length==0'>
+    <img src="../../assets/noOrder.png" alt="">
+    <p>You don't have any active order</p>
+    <button class="button" (click)='move()'>Order Now</button>
+  </div>
+
+
+   <div class="noCart noOrder" *ngIf='currentPage=="cart" && CartList.length==0'>
+    <img src="../../assets/boul.png" alt="">
+    <p>Your cart is empty</p>
+    <button class="button" (click)='move()'>Order Now</button>
+  </div>
+  <div class="noCart noOrder" *ngIf='currentPage=="history" && History.length==0'>
+    <img src="../../assets/history.png" alt="">
+    <p>Your don't have any history</p>
+  </div>
+  <ion-fab-button class="Track-fab" *ngIf='currentPage=="cart" && CartList.length!=0'  (click)="trackOrder()" >
+    <ion-icon name="aperture-sharp"></ion-icon>
+  </ion-fab-button>
 </ion-content>

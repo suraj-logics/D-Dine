@@ -31,6 +31,9 @@
     font-weight: 400;
     src: url('assets/fonts/poppins/Poppins-Regular.ttf');
 }
+html {
+  scroll-behavior: smooth;
+}
 
 .globleBg{
    // --background: linear-gradient(148deg, #fdec33, #ffc033) !important;
@@ -66,3 +69,33 @@ box-shadow: -1px 11px 29px -4px rgba(255,196,9,1);
     .toast{
       --background: #fe724c;
     }  
+
+   
+  .custom-modal  {
+    ion-backdrop{
+      background: transparent;
+    }
+    outline: none;
+    .modal-wrapper {
+      position: absolute;
+      width: 97% !important;
+      height: 125vw  !important;
+      top: calc(100% - (125vw));
+      border-radius: 25px 25px 0 0;
+      -webkit-box-shadow: 0px -5px 46px -15px rgba(0,0,0,0.75);
+      -moz-box-shadow: 0px -5px 46px -15px rgba(0,0,0,0.75);
+      box-shadow: 0px -5px 46px -15px 
+    }
+  }
+  ion-loading.custom-loading {
+    --backdrop-opacity: 0.9;
+    --background: #ffffff;
+   // --width: 320px;
+    ion-backdrop{
+      background: #ffffff;
+    }
+    .loading-wrapper {
+      //background: transparent url("../assets/294.svg") no-repeat center;
+      box-shadow: none;
+    }
+  }

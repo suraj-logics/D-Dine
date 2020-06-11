@@ -1,8 +1,6 @@
 <ion-content class="main-login-container" *ngIf="show">
   <div class="final-div">
-    <div class="div1">
-
-    </div>
+    
     <div class="div2">
       <div class="loginDiv">
         <h3 class="titleHeader">Login</h3>
@@ -46,7 +44,7 @@
           </ion-row>
 
         </ion-grid>
-        <p (click)="toggle()">Forgot Password!</p>
+        <p (click)="toggle()" style="width: fit-content;">Forgot Password!</p>
         <div class="btnDiv">
           <button class="button ion-activatable ripple-parent">Login
             <ion-ripple-effect type="unbounded"></ion-ripple-effect>
@@ -66,9 +64,7 @@
 
 <ion-content class="main-login-container" *ngIf="!show">
   <div class="final-div">
-    <div class="div1">
-
-    </div>
+    
     <div class="div2">
       <div class="loginDiv">
         <h3 class="titleHeader">Reset Password</h3>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonService } from 'src/shared/services/common.service';
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +8,6 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
-
+  constructor(private CM:CommonService) {}
+  
 }

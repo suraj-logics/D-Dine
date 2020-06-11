@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ExploreContainerComponent } from './explore-container.component';
+import { PopoverComponent } from './popover.component';
 
 @NgModule({
   imports: [ CommonModule, FormsModule, IonicModule],
-  declarations: [ExploreContainerComponent],
-  exports: [ExploreContainerComponent]
+  declarations: [PopoverComponent],
+  entryComponents:[PopoverComponent],
+  exports: [PopoverComponent]
 })
-export class ExploreContainerComponentModule {}
+export class PopoverComponentModule {}

@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./pages/onboarding/onboarding.module').then(m => m.OnboardingPageModule)
+    loadChildren: () => import('./pages/onboarding/onboarding.module').then(m => m.OnboardingPageModule),
   },
   {
     path: 'login',

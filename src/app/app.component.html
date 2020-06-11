@@ -1,3 +1,17 @@
-<ion-app>
+ <ion-app *ngIf='Internet==true'>
   <ion-router-outlet></ion-router-outlet>
 </ion-app>
+
+<ion-content class="cont" *ngIf='Internet==false'>
+  <div class="imageDiv">
+    <img src="../../../assets/nointernet.png" alt="">
+  </div>
+  <div class="textDiv">
+    <h2>No Internet!</h2>
+    <p>
+     Please check your internet connection.
+    </p>
+    <button class="button" shape="round">Try Again</button>
+  </div>
+
+</ion-content>

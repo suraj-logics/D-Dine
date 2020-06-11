@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserService } from '../services/user.service'
+import { CommonService } from './common.service';
+import { PopoverController } from '@ionic/angular';
 
 
 @Injectable({
@@ -15,16 +17,17 @@ export class AuthService {
   isAdmin = false;
 
   constructor(
-    private router: Router, private http: HttpClient, private userService: UserService) {
+    private router: Router, private http: HttpClient, private userService: UserService,public pc:PopoverController) {
   }
 
-  logout() {
+  async logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('curent-user');
     this.loggedIn = false;
     this.isAdmin = false;
     localStorage.clear();
     this.router.navigateByUrl('login');
+    await this.pc.dismiss()
   }
 
   setCurrentUser(res) {

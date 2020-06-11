@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ResetOtpPageRoutingModule } from './reset-otp-routing.module';
 
 import { ResetOtpPage } from './reset-otp.page';
+import { NgOtpInputModule } from 'ng-otp-input';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { ResetOtpPage } from './reset-otp.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    ResetOtpPageRoutingModule
+    ResetOtpPageRoutingModule,
+    NgOtpInputModule
   ],
   declarations: [ResetOtpPage]
 })

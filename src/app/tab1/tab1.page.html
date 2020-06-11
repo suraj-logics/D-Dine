@@ -1,17 +1,106 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Menu
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="header">
+  <div class="top-div">
+  <ion-grid>
+    <ion-row>
+      <ion-col size='2'>
+        <div class="icon-div">
+          <ion-icon name="reorder-three" (click)='CM.presentPopover($event)'></ion-icon>
+        </div>
+      </ion-col>
+      <ion-col size='8'>
+        <h2>RESTO</h2>
+      </ion-col>
+      <ion-col size='2'>
+        <img src='../../../assets/vegi.jpg'>
+    </ion-col>
+     
+    </ion-row>
+  </ion-grid>    
+  </div>
+  <div class="search" >
+    <div  class="searchFood">
+      <ion-grid>
+        <ion-row>
+          <ion-col size='1'>
+            <ion-icon name="search" class="icon1"></ion-icon>
+          </ion-col>
+          <ion-col size='11'>
+             <ion-input (focus)='search()' clearInput ></ion-input>
+          </ion-col>
+          
+        </ion-row>
+      </ion-grid> 
+    </div>
+    <div class="filter" (click)="filter()">
+      <img src="../../assets/filter.png" alt="" class="{{nonveg?'active-slide-box':''}}">
+    </div>
+   </div>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  </div>
+<!-- <====header-end====> -->
+<div class="slideDiv">
+  <ion-slides pager="false" [options]="slideOpts" *ngIf='slide'>
+    <ion-slide  *ngFor='let cat of catagory' (click)="gotoTop(cat.id)">
+      <div  class="slide-box ion-activatable ripple-parent {{activeCat==cat.id?'active-slide-box':''}}"> 
+           <p>{{cat.name | slice:0:7}}<span  *ngIf='cat.name&&cat.name.length>7'>..</span></p>
+           <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</div>
+
+<!-- <====list-start====> -->
+<div class="list"  >
+  <ng-container *ngFor='let cat of menuList'>
+  <h5 id='{{cat.Category_id}}'>{{cat.Category_name}}</h5>
+  <ng-container *ngFor="let dish of cat.items;let i = index">
+  <div class="cards  ripple-parent" *ngIf='dish.hide==false'  >
+      <ion-grid>
+        <ion-row>
+          <ion-col size='3' (click)='present(dish)'>
+           <div class='img-div'>
+            <img  [src]="dish&&dish.image?dish.image:'../../../assets/no-item-image.svg'">
+           </div>
+          </ion-col>
+          <ion-col size='6' class="col1" (click)='present(dish)'>
+            <h2>{{dish.name | slice:0:13}}<span *ngIf='dish.name&&dish.name.length>13'>...</span></h2>
+            <p class="detail">{{dish.description | slice:0:20}}<span style="letter-spacing: 1vw;" *ngIf='dish.description&&dish.description.length>20'>...</span></p>
+            <p class="rs">₹ {{dish.price}}</p>
+          </ion-col>
+          <ion-col size='3' class="col2">
+          </ion-col>
+        </ion-row>
+      </ion-grid> 
+      
+      <div class="counter">
+        <ion-grid>
+          <ion-row>
+            <ion-col class="plus">
+              <button class="btn ion-activatable ripple-parent"  (click)='order(false,i,cat.Category_name)'>-
+                <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+               </button>
+              
+            </ion-col>
+            <ion-col  class="count">
+              <p>{{dish.qty}}</p>
+            </ion-col>
+            <ion-col class="minus">
+              <button class="btn ion-activatable ripple-parent" (click)='order(true,i,cat.Category_name)' >+
+                <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+               </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      
+      </div>
+      <div class="vegNonVeg">
+        <ion-icon name="stop-circle-outline" class="{{dish.is_veg?'veg':'nonVeg'}}"></ion-icon>
+      </div>
+    </div>
+  </ng-container>
+  </ng-container>
+  </div>
 </ion-content>

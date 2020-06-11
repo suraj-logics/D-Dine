@@ -1,8 +1,17 @@
 
 ion-tab-bar{
+    height: 16vw;
     --background: whitesmoke;
     border-radius: 40px;
-    width: 93vw;
-    margin: auto;
-    margin-bottom: 7vw;
+    width: 90vw;
+    margin-bottom: 3vw;
+    position: fixed;
+    bottom: 1vw;
+    left: 5vw;
+    ion-label{
+        color: black;
+    }
+}
+ion-content{
+    --background: #fbfbfb;
 }

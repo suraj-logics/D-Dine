@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { VerificationPageRoutingModule } from './verification-routing.module';
 
 import { VerificationPage } from './verification.page';
+import { NgOtpInputModule } from  'ng-otp-input';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { VerificationPage } from './verification.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    VerificationPageRoutingModule
+    VerificationPageRoutingModule,
+    NgOtpInputModule
   ],
   declarations: [VerificationPage]
 })

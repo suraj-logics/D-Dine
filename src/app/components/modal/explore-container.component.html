@@ -1,0 +1,31 @@
+<div class="head" >
+    <div class="toggle"></div>
+    <h3>{{data.name | slice:0:18}}<span *ngIf='data.name&&data.name.length>18'>...</span></h3>
+      <img [src]="data&&data.image?data.image:'../../../assets/no-item-image.svg'" >
+      <div>
+      <p>{{data.description | slice:0:55}}<span *ngIf='data.description&&data.description.length>55'>.....</span></p>
+      <div class="price">
+        <h2>Price: ₹ {{data.price}}</h2>
+       
+      </div>
+      <!-- //grid for counter -->
+      <div>
+      <ion-grid class="counts">
+        <ion-row>
+          <ion-col>
+            <ion-icon name="remove-outline" (click)='order(false)'></ion-icon>
+          </ion-col>
+          <ion-col>
+            <h1>{{data.qty}}</h1>
+          </ion-col>
+          <ion-col>
+            <ion-icon name="add-outline" (click)='order(true)'></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <ion-fab-button class="fab" (click)='CM.dismissModel()'>      <ion-icon name="close"></ion-icon>
+    </ion-fab-button>
+  </div>
+
+  

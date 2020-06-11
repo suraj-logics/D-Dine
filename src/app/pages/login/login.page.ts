@@ -13,8 +13,8 @@ import { error } from 'protractor';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  private loginform: FormGroup;
-  private forgotform: FormGroup;
+  public loginform: FormGroup;
+  public forgotform: FormGroup;
   isSubmitted = false;
   isSubmitted1 = false;
   hLogin: boolean = true;
@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
       phone_number: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]]
     });
     if (localStorage.getItem('token')) {
-      this.router.navigateByUrl('/dashboard/tab2')
+      this.router.navigateByUrl('/dashboard/tab1')
     }
   }
 
@@ -59,12 +59,14 @@ export class LoginPage implements OnInit {
   }
 
   async onLogin() {
+    
     this.isSubmitted = true;
 
     if (!this.loginform.valid) {
       this.CM.Toaster('Please provide all the required values!', 'danger')
       return false;
     } else {
+      this.CM.presentLoading('')
       this.loginform.value.user_type = "u"
       this.loginform.value.phone_number = JSON.stringify(this.loginform.value.phone_number)
       this.userService.login(this.loginform.value, '/authentication/login').subscribe((res: any) => {
@@ -72,6 +74,7 @@ export class LoginPage implements OnInit {
         this.auth.setCurrentUser(res)
         this.loginform.reset();
         this.router.navigateByUrl('/dashboard/tab2')
+        this.CM.dismissLoading()
       }, error => {
         this.loginform.value.phone_number = JSON.parse(this.loginform.value.phone_number)
         this.CM.Toaster(error.error.message, 'danger')
@@ -80,6 +83,7 @@ export class LoginPage implements OnInit {
           this.loginform.reset();
           this.router.navigateByUrl('verification')
         }
+        this.CM.dismissLoading()
       })
     }
   }

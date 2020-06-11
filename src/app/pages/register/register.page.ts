@@ -13,7 +13,7 @@ import { error } from 'protractor';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  private registerform: FormGroup;
+  public registerform: FormGroup;
   isSubmitted = false;
   type: string = 'eye';
   type1: string = 'eye';
@@ -40,15 +40,18 @@ export class RegisterPage implements OnInit {
       this.commonService.Toaster('Please provide all the required values!', 'danger')
       return false;
     } else {
+      this.commonService.presentLoading('')
       this.registerform.value.user_type = "u"
       this.registerform.value.phone_number = JSON.stringify(this.registerform.value.phone_number)
       localStorage.setItem("phone", this.registerform.value.phone_number)
       this.userService.register(this.registerform.value, '/authentication/register').subscribe(res => {
         this.commonService.Toaster('Regitration successfull!please verify your account', 'success')
         this.router.navigateByUrl('verification');
+        this.commonService.dismissLoading();
       }, error => {
         this.registerform.value.phone_number = JSON.parse(this.registerform.value.phone_number)
         this.commonService.Toaster(error.error.message, 'danger')
+        this.commonService.dismissLoading();
       })
     }
   }

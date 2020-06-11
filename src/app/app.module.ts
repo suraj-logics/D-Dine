@@ -10,11 +10,16 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ExploreContainerComponentModule } from './components/modal/explore-container.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { PopoverComponentModule } from './components/popover/popover.module';
+import { OrderSlideComponentModule } from './components/order-slide/order-slide.module';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ReactiveFormsModule,FormsModule,HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(),PopoverComponentModule,OrderSlideComponentModule,ExploreContainerComponentModule, AppRoutingModule, ReactiveFormsModule,FormsModule,HttpClientModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
   providers: [
     StatusBar,
     SplashScreen,

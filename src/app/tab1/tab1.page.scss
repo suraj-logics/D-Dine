@@ -1,0 +1,285 @@
+.top-div{
+    height: 13%;width: 100%;
+    img{
+        width: 12vw;
+        height: 12vw;
+        margin: 3vw;
+        border-radius: 9px;
+    }
+    h2{
+        text-align: center;
+        padding-top: 5vw;
+        padding-bottom: 5vw;
+        font-size: 6vw;
+        font-weight: bold;
+        margin: 0;
+    }
+    .icon-div{
+        text-align: center;
+        font-size: 10vw;
+        padding: 2vw;
+        width: 15vw;
+        height: 15vw;
+        border-radius: 4vw;
+    }
+   ion-col{
+    height: 20vw;
+   }
+   
+      
+    }
+    .active-slide-box{
+        background: #ffc409 !important;
+    }
+    .slide-box{
+        background: white;
+        border: 2px solid #ffc409;
+        width: 100%;
+        text-align: center;
+        padding: 1vw;
+        border-radius: 12px;
+       
+        p{
+        margin: 0;
+        font-size: 5vw;
+        margin-top: 1vw;
+        font-weight: bold;
+        color: black;
+        padding-left: 1vw;
+    padding-right: 1vw;
+        }
+            }
+
+            .cards{
+                width: 92%;
+                background: #ffff;
+                margin: auto;
+                border-radius: 4vw;
+                margin-top: 7vw;
+                height: 25vw;
+                -webkit-box-shadow: 0px 5px 20px -12px rgba(164,168,245,1);
+                -moz-box-shadow: 0px 5px 20px -12px rgba(164,168,245,1);
+                box-shadow: 0px 5px 20px -12px rgba(164,168,245,1);
+                //background: white;
+                .img-div{
+                    background: white;
+                    border-radius: 4vw 0 0 4vw;
+                    height:25vw;
+                    text-align: center;
+                }
+                img{
+                    height: 100%;
+                    object-fit: cover;
+                }
+                h2{
+                   
+                    font-family: sans-serif;
+                    margin: 0;
+                    font-weight: bold;
+                    padding-left: 2vw;
+                    padding-right: 2vw;
+                    padding-top: 1vw;
+                    font-size: 6vw;
+                    color: #040404;
+
+                }
+                
+                //
+                .col2{
+                    p{
+                        font-size: 10vw;
+                        font-weight: bold;
+                        margin: 0;
+                        /* padding-top: 4vw; */
+                        color: #1e2023;
+                        background: #ffc409;
+                        border-radius: 48px;
+                        margin-top: 5vw;
+                    }
+                }
+                .fab{
+                    margin-top: 6vw;
+                --background: #ffc409;
+                }
+                
+                .col1{
+                   
+                    .detail{
+                        color: #7f8288;
+                        font-size: 3vw;
+                        font-weight: bold;
+                        margin-top: 1vw;
+                        margin-left: 2vw;
+                        margin-bottom: 2vw;
+                        
+                    }
+                    .rs{
+                        color: #202122;
+                        font-size: 5vw;
+                        font-weight: bold;
+                        margin: 2px 2vw 0 2vw;
+                        font-family: sans-serif;
+                    }
+                }
+                ion-grid{
+                    padding: 0;
+                }
+                ion-col{
+                    padding: 0;
+                }
+                .col-2{
+                    
+                    h2{
+                        margin: 1vw;
+                        font-size: 6vw;
+                        font-weight: bold;
+                        letter-spacing: 1vw
+                    }
+                    p{
+                        margin: 0;
+                        margin-left: 1vw;
+                    }
+                }
+                ion-icon{
+                    float: right;
+                    margin-top: 2vw;
+                    font-size: 7vw;
+                    margin-right: 5vw;
+                }
+            }
+
+            .counter{
+                background: #ffc409;
+                position: absolute;
+                width: 18%;
+                border-radius: 28px;
+                bottom: 5vw;
+                 -webkit-box-shadow:0px 3px 19px -8px rgba(0,0,0,0.75);
+                -moz-box-shadow:0px 3px 19px -8px rgba(0,0,0,0.75);
+                box-shadow: 0px 3px 19px -8px rgba(0,0,0,0.75);
+                left: 72vw;
+                height:6vw;
+                .plus{
+                    text-align: center;
+                    ion-button{
+                        border-radius:  21px 0 0 21px ;
+                    }
+                }
+                .minus{
+                    button{
+                        border-radius: 0 21px 21px 0;
+                    }
+                  text-align: center;
+                }
+                .count{
+                    text-align: center;
+                    p{
+                        color: #161414;
+                        font-size: 4vw;
+                        margin: 0;
+                        font-weight: bold;
+                    }
+                }
+                .btn{
+                    background: #ffff000a;
+                    font-size: 4vw;
+                    outline: none;
+                    color: black;
+                    width: 100%;
+                    height: 100%;
+                    font-weight: bold;
+                 }
+            }
+
+            ion-content{
+                --background:#fbfbfb;
+            }
+            .search{
+                padding-bottom: 3vw;
+            }
+            .searchFood{
+                width: 80%;
+                background: #f9f9f9;
+                border: 2px solid white;
+                border-radius: 16px;
+                margin-left: 2vw;
+             .icon1{
+                font-size: 6vw;
+                float: left;
+                color: #51514f;
+                margin-top: 2vw;
+             }
+             .icon2{
+                font-size: 6vw;
+                float: right;
+                color: #51514f;
+                margin-top: 2vw;
+            }
+             ion-input{
+                 //padding:0;
+                 width: 96%;
+                 margin: auto;
+             }
+             ion-col{
+                padding: 0;
+                font-size: 5vw;
+                letter-spacing: 2px;
+             }
+            }
+            .slideDiv{
+                height:10%; 
+            }
+            ion-slides {
+                margin-top: 44vw;
+                margin-bottom: 3vw;
+                }
+
+                .header{
+                    position: fixed;
+                    top: 0vw;
+                    width: 100%;
+                    z-index: 11;
+                    background: #fbfbfb;
+                }
+
+                .list{
+                    //margin-top: 57vw;
+                    padding-bottom: 40vw;
+                    h5{
+                        text-align: center;
+                        font-size: 7vw;
+                        font-weight: lighter;
+                    }
+                }
+
+                .filter{
+                    width: 15%;
+                    position: absolute;
+                    right: 2px;
+                    bottom: 3vw;
+                    img{
+                        background-color: #f9f9f9;
+                        height: 11vw;
+                        border: 2px solid white;
+                        border-radius: 11px;
+                        outline: none;
+                    }
+                }
+
+                .vegNonVeg{
+                    position: absolute;
+                    top: 0;
+                    left: 85vw;
+                    width: fit-content;
+                    ion-icon{
+                    border-radius: 25px;
+                    margin: 1px;
+                    }
+                    
+                    .nonVeg{
+                    color: red;
+                    }
+                    .veg{
+                    color: #1eff00;
+                    }
+                }
