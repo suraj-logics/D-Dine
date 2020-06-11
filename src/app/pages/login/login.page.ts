@@ -52,7 +52,6 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-
   ionViewWillEnter() {
     this.isSubmitted = false;
     this.isSubmitted1 = false;
@@ -76,6 +75,11 @@ export class LoginPage implements OnInit {
       }, error => {
         this.loginform.value.phone_number = JSON.parse(this.loginform.value.phone_number)
         this.CM.Toaster(error.error.message, 'danger')
+        if (error.error.message === "User is not verified") {
+          localStorage.setItem("phone", this.loginform.value.phone_number)
+          this.loginform.reset();
+          this.router.navigateByUrl('verification')
+        }
       })
     }
   }

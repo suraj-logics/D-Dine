@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { RxwebValidators, json } from '@rxweb/reactive-form-validators'
 import { CommonService } from 'src/shared/services/common.service';
 import { UserService } from '../../../shared/services/user.service';
 import { AuthService } from '../../../shared/services/auth.service';
@@ -14,12 +15,14 @@ import { error } from 'protractor';
 })
 export class ForgotPasswordPage implements OnInit {
   type: string = 'eye';
+  type1: string = 'eye';
   private forgotform: FormGroup;
   isSubmitted = false;
 
   constructor(private formBuilder: FormBuilder, private CM: CommonService, private router: Router, private userService: UserService, private auth: AuthService) {
     this.forgotform = this.formBuilder.group({
       password: ['', [Validators.required, Validators.minLength(3)]],
+      confirmpassword: ['', [RxwebValidators.compare({ fieldName: 'password' })]]
     });
   }
 
@@ -51,6 +54,10 @@ export class ForgotPasswordPage implements OnInit {
   changeType(type) {
     if (type == 'eye') this.type = 'eye-off';
     if (type == 'eye-off') this.type = 'eye';
+  }
+  psChangeType(type) {
+    if (type == 'eye') this.type1 = 'eye-off';
+    if (type == 'eye-off') this.type1 = 'eye';
   }
 
 }
