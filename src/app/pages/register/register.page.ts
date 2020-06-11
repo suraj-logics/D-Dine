@@ -47,6 +47,7 @@ export class RegisterPage implements OnInit {
         this.commonService.Toaster('Regitration successfull!please verify your account', 'success')
         this.router.navigateByUrl('verification');
       }, error => {
+        this.registerform.value.phone_number = JSON.parse(this.registerform.value.phone_number)
         this.commonService.Toaster(error.error.message, 'danger')
       })
     }

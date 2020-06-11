@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
   constructor(private formBuilder: FormBuilder, private CM: CommonService, private router: Router, private userService: UserService, private auth: AuthService) {
     this.show = true;
     this.loginform = this.formBuilder.group({
-      phone_number: ['', [Validators.required,Validators.pattern('^[0-9]{10}$')]],
+      phone_number: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       password: ['', Validators.required],
     });
 
@@ -54,6 +54,7 @@ export class LoginPage implements OnInit {
 
 
   ionViewWillEnter() {
+    this.loginform.reset();
     this.show = true;
   }
 
@@ -71,6 +72,7 @@ export class LoginPage implements OnInit {
         this.auth.setCurrentUser(res)
         this.router.navigateByUrl('/dashboard/tab2')
       }, error => {
+        this.loginform.value.phone_number = JSON.parse(this.loginform.value.phone_number)
         this.CM.Toaster(error.error.message, 'danger')
       })
     }
@@ -89,6 +91,7 @@ export class LoginPage implements OnInit {
         this.CM.Toaster('Please verify otp!', 'success')
         this.router.navigateByUrl('reset-otp')
       }, error => {
+        this.forgotform.value.phone_number = JSON.parse(this.forgotform.value.phone_number)
         this.CM.Toaster(error.error.message, 'danger')
       })
     }
