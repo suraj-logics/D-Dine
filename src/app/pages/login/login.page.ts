@@ -54,7 +54,8 @@ export class LoginPage implements OnInit {
 
 
   ionViewWillEnter() {
-    this.loginform.reset();
+    this.isSubmitted = false;
+    this.isSubmitted1 = false;
     this.show = true;
   }
 
@@ -70,6 +71,7 @@ export class LoginPage implements OnInit {
       this.userService.login(this.loginform.value, '/authentication/login').subscribe((res: any) => {
         this.CM.Toaster('Login successfull!', 'success')
         this.auth.setCurrentUser(res)
+        this.loginform.reset();
         this.router.navigateByUrl('/dashboard/tab2')
       }, error => {
         this.loginform.value.phone_number = JSON.parse(this.loginform.value.phone_number)
@@ -89,6 +91,7 @@ export class LoginPage implements OnInit {
       localStorage.setItem("phone", this.forgotform.value.phone_number)
       this.userService.generateOtp(this.forgotform.value, '/authentication/generate-otp').subscribe((res: any) => {
         this.CM.Toaster('Please verify otp!', 'success')
+        this.forgotform.reset();
         this.router.navigateByUrl('reset-otp')
       }, error => {
         this.forgotform.value.phone_number = JSON.parse(this.forgotform.value.phone_number)
