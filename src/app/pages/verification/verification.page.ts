@@ -45,11 +45,20 @@ export class VerificationPage implements OnInit {
       otp4: ['', Validators.required],
     });
     commonService.presentLoading('')
-    if (this.auth.getLoggedUser()) {
-      commonService.dismissLoading();
-      router.navigateByUrl('/dashboard/tab1')
+    if (localStorage.getItem('token')) {
+      this.router.navigateByUrl('/dashboard/tab1')
     } else {
       commonService.dismissLoading();
+    }
+  }
+
+  ionViewWillEnter() {
+    this.isSubmitted = false;
+    this.otps = '';
+    if (localStorage.getItem('token')) {
+      this.router.navigateByUrl('/dashboard/tab1')
+    } else {
+      this.commonService.dismissLoading();
     }
   }
 
@@ -73,12 +82,12 @@ export class VerificationPage implements OnInit {
       return false;
     } else if (str5.length == 4) {
       this.commonService.presentLoading('');
-      this.userService.verifyOtp({ otp: str5, phone_number: localStorage.getItem('phone'), user_type: "u" }, '/authentication/verify-user').subscribe(res => {
-        this.commonService.Toaster('Otp Verification successfull!', 'success')
+      this.userService.verifyOtp({ otp: str5, phone_number: localStorage.getItem('phone'), user_type: "u" }, '/authentication/verify-user').subscribe((res: any) => {
+        this.commonService.Toaster('User Verified successfully!', 'success')
         localStorage.removeItem('phone');
-        this.router.navigate(['login'])
+        this.auth.setCurrentUser(res)
+        this.router.navigateByUrl('/dashboard/tab1')
         this.commonService.dismissLoading()
-
       }, error => {
         this.commonService.Toaster(error.error.message, 'danger')
         this.commonService.dismissLoading()

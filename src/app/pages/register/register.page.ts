@@ -15,6 +15,7 @@ import { error } from 'protractor';
 export class RegisterPage implements OnInit {
   public registerform: FormGroup;
   isSubmitted = false;
+  submit = false;
   type: string = 'eye';
   type1: string = 'eye';
   constructor(private formBuilder: FormBuilder, private router: Router, private commonService: CommonService, private userService: UserService) {
@@ -34,6 +35,11 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
+  ionViewWillEnter() {
+    this.isSubmitted = false;
+    this.submit = false;
+  }
+
   signup() {
     this.isSubmitted = true;
     if (!this.registerform.valid) {
@@ -46,10 +52,11 @@ export class RegisterPage implements OnInit {
       localStorage.setItem("phone", this.registerform.value.phone_number)
       this.userService.register(this.registerform.value, '/authentication/register').subscribe(res => {
         this.commonService.Toaster('Regitration successfull!please verify your account', 'success')
+        this.registerform.reset();
         this.router.navigateByUrl('verification');
         this.commonService.dismissLoading();
       }, error => {
-        this.registerform.value.phone_number = JSON.parse(this.registerform.value.phone_number)
+        this.registerform.value.phone_number = parseInt(JSON.parse(this.registerform.value.phone_number))
         this.commonService.Toaster(error.error.message, 'danger')
         this.commonService.dismissLoading();
       })
@@ -63,5 +70,9 @@ export class RegisterPage implements OnInit {
   psChangeType(type) {
     if (type == 'eye') this.type1 = 'eye-off';
     if (type == 'eye-off') this.type1 = 'eye';
+  }
+
+  checkValidation() {
+    this.submit = true;
   }
 }

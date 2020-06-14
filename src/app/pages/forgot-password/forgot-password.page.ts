@@ -18,12 +18,21 @@ export class ForgotPasswordPage implements OnInit {
   type1: string = 'eye';
   private forgotform: FormGroup;
   isSubmitted = false;
+  submit = false;
 
   constructor(private formBuilder: FormBuilder, private CM: CommonService, private router: Router, private userService: UserService, private auth: AuthService) {
     this.forgotform = this.formBuilder.group({
       password: ['', [Validators.required, Validators.minLength(3)]],
       confirmpassword: ['', [RxwebValidators.compare({ fieldName: 'password' })]]
     });
+  }
+
+  ionViewWillEnter() {
+    this.isSubmitted = false;
+    this.submit = false;
+    if (localStorage.getItem('token')) {
+      this.router.navigateByUrl('/dashboard/tab1')
+    }
   }
 
   get errorControl() {
@@ -45,9 +54,10 @@ export class ForgotPasswordPage implements OnInit {
       this.userService.resetPassword(this.forgotform.value, '/authentication/reset-password').subscribe((res: any) => {
         this.CM.Toaster('Password reset successfully!', 'success')
         localStorage.removeItem('phone');
-        this.router.navigateByUrl('login');
+        this.auth.setCurrentUser(res)
+        this.forgotform.reset();
+        this.router.navigateByUrl('/dashboard/tab2')
         this.CM.dismissLoading();
-
       }, error => {
         this.CM.dismissLoading();
         this.CM.Toaster(error.error.message, 'danger')
@@ -62,6 +72,10 @@ export class ForgotPasswordPage implements OnInit {
   psChangeType(type) {
     if (type == 'eye') this.type1 = 'eye-off';
     if (type == 'eye-off') this.type1 = 'eye';
+  }
+
+  checkValidation() {
+    this.submit = true;
   }
 
 }

@@ -77,17 +77,17 @@
           </ion-col>
           <ion-col size="10">
             <ion-item >
-              <ion-input  type="{{type=='eye'?'Password':'text'}}" placeholder="Confirm Password" formControlName="confirmpassword"></ion-input>
+              <ion-input  type="{{type=='eye'?'Password':'text'}}" placeholder="Confirm Password" formControlName="confirmpassword" (ionChange)="checkValidation($event)"></ion-input>
               <ion-icon name="{{type}}" (click)='changeType(type)'  slot="end" style="color: #ff5c6c"></ion-icon>
             </ion-item>
-            <span class="error ion-padding" *ngIf="isSubmitted && errorControl.confirmpassword.errors?.compare">
+            <span class="error ion-padding" *ngIf="submit && errorControl.confirmpassword.errors?.compare">
               Confirm Password and password should be same.
             </span>
           </ion-col>
         </ion-row>
       </ion-grid>
       <div class="btnDiv">
-        <button  class="button ion-activatable ripple-parent">Sign Up
+        <button  class="button ion-activatable ripple-parent" [disabled]="registerform.invalid">Sign Up
           <ion-ripple-effect type="unbounded"></ion-ripple-effect>
         </button>
         <!-- <button  *ngIf='hLogin==false' class="button ion-activatable ripple-parent" (click)='signUp()'>Sign Up

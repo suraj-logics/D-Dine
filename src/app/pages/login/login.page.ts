@@ -59,7 +59,7 @@ export class LoginPage implements OnInit {
   }
 
   async onLogin() {
-    
+
     this.isSubmitted = true;
 
     if (!this.loginform.valid) {
@@ -76,7 +76,7 @@ export class LoginPage implements OnInit {
         this.router.navigateByUrl('/dashboard/tab2')
         this.CM.dismissLoading()
       }, error => {
-        this.loginform.value.phone_number = JSON.parse(this.loginform.value.phone_number)
+        this.loginform.value.phone_number = parseInt(JSON.parse(this.loginform.value.phone_number))
         this.CM.Toaster(error.error.message, 'danger')
         if (error.error.message === "User is not verified") {
           localStorage.setItem("phone", this.loginform.value.phone_number)
@@ -102,7 +102,7 @@ export class LoginPage implements OnInit {
         this.forgotform.reset();
         this.router.navigateByUrl('reset-otp')
       }, error => {
-        this.forgotform.value.phone_number = JSON.parse(this.forgotform.value.phone_number)
+        this.forgotform.value.phone_number = parseInt(JSON.parse(this.forgotform.value.phone_number))
         this.CM.Toaster(error.error.message, 'danger')
       })
     }
