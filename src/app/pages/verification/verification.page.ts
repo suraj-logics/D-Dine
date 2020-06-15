@@ -102,7 +102,7 @@ export class VerificationPage implements OnInit {
   resendOtp() {
     this.commonService.presentLoading('');
     this.userService.generateOtp({ phone_number: parseInt(localStorage.getItem('phone')), user_type: "u" }, '/authentication/generate-otp').subscribe((res: any) => {
-      this.commonService.Toaster('Otp sent register number!', 'success')
+      this.commonService.Toaster('Otp sent to the register number!', 'success')
       this.commonService.dismissLoading()
     },error=>{
       this.commonService.Toaster(error.error.message, 'danger')
