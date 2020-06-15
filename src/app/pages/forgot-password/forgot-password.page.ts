@@ -14,8 +14,8 @@ import { error } from 'protractor';
   styleUrls: ['./forgot-password.page.scss'],
 })
 export class ForgotPasswordPage implements OnInit {
-  type: string = 'eye';
-  type1: string = 'eye';
+  type: string = 'eye-off';
+  type1: string = 'eye-off';
   public forgotform: FormGroup;
   isSubmitted = false;
   submit = false;
@@ -50,13 +50,13 @@ export class ForgotPasswordPage implements OnInit {
     } else {
       this.CM.presentLoading('');
       this.forgotform.value.user_type = "u"
-      this.forgotform.value.phone_number = localStorage.getItem('phone')
+      this.forgotform.value.phone_number = parseInt(localStorage.getItem('phone'))
       this.userService.resetPassword(this.forgotform.value, '/authentication/reset-password').subscribe((res: any) => {
         this.CM.Toaster('Password reset successfully!', 'success')
         localStorage.removeItem('phone');
         this.auth.setCurrentUser(res)
         this.forgotform.reset();
-        this.router.navigateByUrl('/dashboard/tab2')
+        this.router.navigateByUrl('/tab1')
         this.CM.dismissLoading();
       }, error => {
         this.CM.dismissLoading();

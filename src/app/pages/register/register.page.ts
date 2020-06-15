@@ -48,7 +48,6 @@ export class RegisterPage implements OnInit {
     } else {
       this.commonService.presentLoading('')
       this.registerform.value.user_type = "u"
-      this.registerform.value.phone_number = JSON.stringify(this.registerform.value.phone_number)
       localStorage.setItem("phone", this.registerform.value.phone_number)
       this.userService.register(this.registerform.value, '/authentication/register').subscribe(res => {
         this.commonService.Toaster('Regitration successfull!please verify your account', 'success')
@@ -57,7 +56,6 @@ export class RegisterPage implements OnInit {
         this.commonService.dismissLoading();
         this.registerform.reset();
       }, error => {
-        this.registerform.value.phone_number = parseInt(JSON.parse(this.registerform.value.phone_number))
         this.commonService.Toaster(error.error.message, 'danger')
         this.commonService.dismissLoading();
         this.registerform.reset();

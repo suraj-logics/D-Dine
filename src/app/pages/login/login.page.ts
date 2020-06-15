@@ -56,6 +56,9 @@ export class LoginPage implements OnInit {
     this.isSubmitted = false;
     this.isSubmitted1 = false;
     this.show = true;
+    if (localStorage.getItem('token')) {
+      this.router.navigateByUrl('/tab1')
+    }
   }
  
   async onLogin() {
@@ -68,7 +71,6 @@ export class LoginPage implements OnInit {
     } else {
       this.CM.presentLoading('')
       this.loginform.value.user_type = "u"
-      this.loginform.value.phone_number = JSON.stringify(this.loginform.value.phone_number)
       this.userService.login(this.loginform.value, '/authentication/login').subscribe((res: any) => {
         this.CM.Toaster('Login successfull!', 'success')
         this.auth.setCurrentUser(res)
@@ -76,7 +78,6 @@ export class LoginPage implements OnInit {
         this.router.navigateByUrl('/tab1')
         this.CM.dismissLoading()
       }, error => {
-        this.loginform.value.phone_number = parseInt(JSON.parse(this.loginform.value.phone_number))
         this.CM.Toaster(error.error.message, 'danger')
         if (error.error.message === "User is not verified") {
           localStorage.setItem("phone", this.loginform.value.phone_number)
@@ -94,14 +95,12 @@ export class LoginPage implements OnInit {
       return false;
     } else {
       this.forgotform.value.user_type = "u"
-      this.forgotform.value.phone_number = JSON.stringify(this.forgotform.value.phone_number)
       localStorage.setItem("phone", this.forgotform.value.phone_number)
       this.userService.generateOtp(this.forgotform.value, '/authentication/generate-otp').subscribe((res: any) => {
         this.CM.Toaster('Please verify otp!', 'success')
         this.forgotform.reset();
         this.router.navigateByUrl('reset-otp')
       }, error => {
-        this.forgotform.value.phone_number = parseInt(JSON.parse(this.forgotform.value.phone_number))
         this.CM.Toaster(error.error.message, 'danger')
       })
     }

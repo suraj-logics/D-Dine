@@ -34,20 +34,20 @@ export class VerificationPage implements OnInit {
       'border': 'none',
       'border-bottom': '2px solid rgb(173, 173, 173)',
       'background': 'none',
-      'border-radius':'0'
+      'border-radius': '0'
     },
   };
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     public auth: AuthService,
-    private commonService: CommonService, private userService: UserService,public loc:Location) {
+    private commonService: CommonService, private userService: UserService, public loc: Location) {
     this.verifyForm = this.formBuilder.group({
       otp1: ['', Validators.required],
       otp2: ['', Validators.required],
       otp3: ['', Validators.required],
       otp4: ['', Validators.required],
     });
-   
+
     commonService.presentLoading('')
     if (localStorage.getItem('token')) {
       this.router.navigateByUrl('/tab1')
@@ -85,7 +85,7 @@ export class VerificationPage implements OnInit {
       return false;
     } else if (str5.length == 4) {
       this.commonService.presentLoading('');
-      this.userService.verifyOtp({ otp: str5, phone_number: localStorage.getItem('phone'), user_type: "u" }, '/authentication/verify-user').subscribe((res: any) => {
+      this.userService.verifyOtp({ otp: str5, phone_number: parseInt(localStorage.getItem('phone')), user_type: "u" }, '/authentication/verify-user').subscribe((res: any) => {
         this.commonService.Toaster('User Verified successfully!', 'success')
         localStorage.removeItem('phone');
         this.auth.setCurrentUser(res)
@@ -97,6 +97,16 @@ export class VerificationPage implements OnInit {
 
       })
     }
+  }
+
+  resendOtp() {
+    this.commonService.presentLoading('');
+    this.userService.generateOtp({ phone_number: parseInt(localStorage.getItem('phone')), user_type: "u" }, '/authentication/generate-otp').subscribe((res: any) => {
+      this.commonService.dismissLoading()
+    },error=>{
+      this.commonService.Toaster(error.error.message, 'danger')
+      this.commonService.dismissLoading()
+    })
   }
 
 }

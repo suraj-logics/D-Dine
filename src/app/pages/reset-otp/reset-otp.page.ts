@@ -87,7 +87,7 @@ export class ResetOtpPage implements OnInit {
       return false;
     } else if (str5.length == 4) {
       this.commonService.presentLoading('');
-      this.userService.verifyOtp({ otp: str5, phone_number: localStorage.getItem('phone'), user_type: "u" }, '/authentication/verify-otp').subscribe(res => {
+      this.userService.verifyOtp({ otp: str5, phone_number: parseInt(localStorage.getItem('phone')), user_type: "u" }, '/authentication/verify-otp').subscribe(res => {
         this.commonService.Toaster('Otp Verification successfull!', 'success')
         this.router.navigateByUrl('forgot-password')
         this.commonService.dismissLoading();
@@ -99,4 +99,15 @@ export class ResetOtpPage implements OnInit {
       })
     }
   }
+
+  resendOtp() {
+    this.commonService.presentLoading('');
+    this.userService.generateOtp({ phone_number: parseInt(localStorage.getItem('phone')), user_type: "u" }, '/authentication/generate-otp').subscribe((res: any) => {
+      this.commonService.dismissLoading()
+    },error=>{
+      this.commonService.Toaster(error.error.message, 'danger')
+      this.commonService.dismissLoading()
+    })
+  }
+
 }
