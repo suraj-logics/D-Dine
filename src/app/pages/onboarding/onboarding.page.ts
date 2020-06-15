@@ -19,7 +19,9 @@ export class OnboardingPage implements OnInit {
   // secondSlide: ElementRef;
   slideOpts = {
     initialSlide: 0,
-    speed: 400
+    speed: 400,
+    //slidesPerView: 3,
+    
   };
   active:any=0;
   constructor(
@@ -33,7 +35,7 @@ export class OnboardingPage implements OnInit {
     ) {
       CS.presentLoading('')
       if(this.auth.getLoggedUser()){
-        router.navigateByUrl('/dashboard/tab1')
+        router.navigateByUrl('/tab1')
         CS.dismissLoading();
       }else{
         CS.dismissLoading();

@@ -21,8 +21,8 @@ const routes: Routes = [
 
       },
       {
-        path: 'dashboard',
-        redirectTo: '/dashboard/tab1',
+        path: 'fsfd',
+        redirectTo: '/dashbfdsfoard/tab1',
         pathMatch: 'full'
       }
     ]

@@ -22,13 +22,34 @@
             <img [src]="cat.obj&&cat.obj.image?cat.obj.image:'../../../assets/no-item-image.svg'" alt="">
           </ion-col>
           <ion-col size='7'>
-            <h3>{{cat.obj.name| slice:0:10}}<span *ngIf='cat.obj&&cat.obj.name.length>10'>...</span> <span style="color: red;"> X</span>  {{cat.obj.qty}}</h3>
+            <h3>{{cat.obj.name| slice:0:13}}<span *ngIf='cat.obj&&cat.obj.name.length>13'>...</span></h3>
           </ion-col>
           <ion-col size='3'>
             <h6>₹ {{cat.obj.price*cat.obj.qty}}</h6>
           </ion-col>
         </ion-row>
       </ion-grid>
+      <div class="counter">
+        <ion-grid>
+          <ion-row>
+            <ion-col class="plus" >
+              <button class="btn ion-activatable ripple-parent" (click)='changeOrder(false,i)' >-
+                <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+               </button>
+              
+            </ion-col>
+            <ion-col  class="count" >
+              <p>{{cat.obj.qty}}</p>
+            </ion-col>
+            <ion-col class="minus">
+              <button class="btn ion-activatable ripple-parent" (click)='changeOrder(true,i)' >+
+                <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+               </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      
+      </div>
     </div>
     <div class="Total">
       <ion-grid>

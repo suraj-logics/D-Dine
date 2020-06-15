@@ -31,17 +31,22 @@ export class CommonService {
     toast.present();
   }
 
-  async presentModal(data,info) {
+  async presentModal(data,info,callback) {
     const modal = await this.modalController.create({
       component: ExploreContainerComponent,
       cssClass: 'custom-modal',
       swipeToClose: true,
       componentProps: {data,show:info}
     });
+    modal.onDidDismiss()
+    .then((data) => {
+     console.log(data,'modal data')
+     callback(true)
+  });
     return await modal.present();
   }
 
-  async presentBillSlide() {
+  async presentBillSlide(callback) {
     const modal = await this.modalController.create({
       component: OrderSlideComponent,
       swipeToClose: true,
@@ -49,6 +54,7 @@ export class CommonService {
     modal.onDidDismiss()
       .then((data) => {
        console.log(data,'modal data')
+       callback(true)
     });
 
     return await modal.present();

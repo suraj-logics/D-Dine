@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/shared/services/common.service';
 import { OrderService } from 'src/shared/services/order.service';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-order-slide',
@@ -14,7 +15,13 @@ export class OrderSlideComponent implements OnInit {
   order:any={}
   order_description:string;
   orderData:any;
-   constructor(public CM:CommonService,private orderService:OrderService) { 
+   constructor(public CM:CommonService,private orderService:OrderService,private plateForm:Platform) { 
+    this.prepairData();
+    console.log(this.plateForm.platforms())
+
+  }
+
+  prepairData(){
     if(localStorage.getItem('Cart')){
       this.orderItems=JSON.parse(localStorage.getItem('Cart'))
       if(this.orderItems.length){
@@ -30,7 +37,17 @@ export class OrderSlideComponent implements OnInit {
       this.orderItems=[];
     }
   }
-
+  changeOrder(quantity,i){
+    if(this.orderItems[i]&&this.orderItems[i].obj&&this.orderItems[i].obj.qty){
+    this.orderItems[i].obj.qty=quantity==true?this.orderItems[i].obj.qty+1:this.orderItems[i].obj.qty>0?this.orderItems[i].obj.qty-1:0;
+    this.total=quantity==true?this.total+this.orderItems[i].obj.price:this.total-this.orderItems[i].obj.price;
+  }
+    if(this.orderItems[i]&&this.orderItems[i].obj&&this.orderItems[i].obj.qty==0){this.orderItems.splice(i,1); localStorage.setItem('Cart',JSON.stringify(this.orderItems))}
+    if(this.orderItems.length)this.orderService.addToCart(this.orderItems[i].id,this.orderItems[i].obj)
+    if(this.orderItems.length==0){
+      this.CM.dismissModel()
+    }
+  }
   ngOnInit() {}
 
   addText(){
@@ -56,5 +73,9 @@ export class OrderSlideComponent implements OnInit {
       console.log(err,'order err')
       this.CM.dismissModelWithData('order');
     })
+    if(this.plateForm.is('mobileweb')&&!this.plateForm.is('desktop')){
+      this.orderService.payNow({amount:this.total})
+    }
   }
+  
 }

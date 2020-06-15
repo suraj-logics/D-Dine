@@ -6,6 +6,7 @@ import { CommonService } from '../../../shared/services/common.service';
 import { UserService } from '../../../shared/services/user.service';
 import { error } from 'protractor';
 import { AuthService } from 'src/shared/services/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-verification',
@@ -28,25 +29,28 @@ export class VerificationPage implements OnInit {
       'height': '14vw',
       'margin': ' 0 5px',
       'text-align': 'center',
-      'font-size': '9vw',
-      'border': 'solid 1px #ccc',
-      'box-shadow': ' 0 0 5px #ccc inset',
+      'font-size': '6vw',
       'outline': 'none',
+      'border': 'none',
+      'border-bottom': '2px solid rgb(173, 173, 173)',
+      'background': 'none',
+      'border-radius':'0'
     },
   };
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     public auth: AuthService,
-    private commonService: CommonService, private userService: UserService) {
+    private commonService: CommonService, private userService: UserService,public loc:Location) {
     this.verifyForm = this.formBuilder.group({
       otp1: ['', Validators.required],
       otp2: ['', Validators.required],
       otp3: ['', Validators.required],
       otp4: ['', Validators.required],
     });
+   
     commonService.presentLoading('')
     if (localStorage.getItem('token')) {
-      this.router.navigateByUrl('/dashboard/tab1')
+      this.router.navigateByUrl('/tab1')
     } else {
       commonService.dismissLoading();
     }
@@ -56,7 +60,7 @@ export class VerificationPage implements OnInit {
     this.isSubmitted = false;
     this.otps = '';
     if (localStorage.getItem('token')) {
-      this.router.navigateByUrl('/dashboard/tab1')
+      this.router.navigateByUrl('/tab1')
     } else {
       this.commonService.dismissLoading();
     }
@@ -76,7 +80,6 @@ export class VerificationPage implements OnInit {
 
   Verify() {
     let str5 = this.otps;
-
     if (str5.length < 4) {
       this.commonService.Toaster('Please enter otp!', 'danger')
       return false;
@@ -86,7 +89,7 @@ export class VerificationPage implements OnInit {
         this.commonService.Toaster('User Verified successfully!', 'success')
         localStorage.removeItem('phone');
         this.auth.setCurrentUser(res)
-        this.router.navigateByUrl('/dashboard/tab1')
+        this.router.navigateByUrl('/tab1')
         this.commonService.dismissLoading()
       }, error => {
         this.commonService.Toaster(error.error.message, 'danger')

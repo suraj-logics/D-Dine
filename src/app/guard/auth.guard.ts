@@ -29,7 +29,7 @@ export class onboardingGuard implements CanActivate {
     if (this.auth.getLoggedUser()) {
       return false;
     } else {
-      this.router.navigateByUrl('/dashboard/tab1');
+      this.router.navigateByUrl('/tab1');
     }
   }
 

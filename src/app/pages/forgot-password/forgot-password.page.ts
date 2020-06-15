@@ -16,7 +16,7 @@ import { error } from 'protractor';
 export class ForgotPasswordPage implements OnInit {
   type: string = 'eye';
   type1: string = 'eye';
-  private forgotform: FormGroup;
+  public forgotform: FormGroup;
   isSubmitted = false;
   submit = false;
 
@@ -31,7 +31,7 @@ export class ForgotPasswordPage implements OnInit {
     this.isSubmitted = false;
     this.submit = false;
     if (localStorage.getItem('token')) {
-      this.router.navigateByUrl('/dashboard/tab1')
+      this.router.navigateByUrl('/tab1')
     }
   }
 
@@ -74,7 +74,7 @@ export class ForgotPasswordPage implements OnInit {
     if (type == 'eye-off') this.type1 = 'eye';
   }
 
-  checkValidation() {
+  checkValidation(ev) {
     this.submit = true;
   }
 

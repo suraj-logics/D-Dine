@@ -6,8 +6,6 @@ import { Observable } from 'rxjs';
 import { UserService } from '../services/user.service'
 import { CommonService } from './common.service';
 import { PopoverController } from '@ionic/angular';
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +15,9 @@ export class AuthService {
   isAdmin = false;
 
   constructor(
-    private router: Router, private http: HttpClient, private userService: UserService,public pc:PopoverController) {
+    private router: Router, 
+    private http: HttpClient, 
+    private userService: UserService,public pc:PopoverController) {
   }
 
   async logout() {
@@ -30,6 +30,9 @@ export class AuthService {
     await this.pc.dismiss()
   }
 
+  async googleSignIn() {
+  }
+  
   setCurrentUser(res) {
     this.loggedIn = true;
     localStorage.setItem('token', JSON.stringify(res.token));

@@ -7,15 +7,15 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class OrderService {
-
   constructor(private http: HttpClient) { }
 
-  Menu(user, url): Observable<any> {
+  Menu(user, url,string): Observable<any> {
     let params = new HttpParams();
-    Query_Params:
     // Begin assigning parameters
-    params = params.append('role', 'Merchant');
+    let role=string!=''?'User':'Merchant';
+    params = params.append('role', role);
     params = params.append('restaurant_id', '82eb84862cbfe6');
+    if(string!='')params = params.append('string', string);
     params = params.append('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjgyZWI4NDg2MmNiZmU2In0.NOlL0F6fU22xEc23UKK4WNJz49sG0hDR9wlaqORRnEY');
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.get<any>(environment.api_url + '/merchant/menu', { params: params });
@@ -57,5 +57,10 @@ export class OrderService {
     } else {
       localStorage.setItem('Cart', JSON.stringify([{ id, obj }]))
     }
+
+  }
+
+  payNow(data){
+    window.open('upi://pay?pa=pmcares@sbi&pn=PM%20CARES&mc=9400&am='+data.amount+'&cu=INR&tn=App Payment')
   }
 }

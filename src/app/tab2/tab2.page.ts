@@ -35,6 +35,7 @@ ionViewDidEnter(){
   segmentChanged(event){
    this.currentPage=event.detail.value+'';
   }
+
   order(quantity,i){
     if(this.CartList[i]&&this.CartList[i].obj&&this.CartList[i].obj.qty)
       this.CartList[i].obj.qty=quantity==true?this.CartList[i].obj.qty+1:this.CartList[i].obj.qty>0?this.CartList[i].obj.qty-1:0;
@@ -48,13 +49,9 @@ ionViewDidEnter(){
    localStorage.setItem('Cart',JSON.stringify(this.CartList))
   }
   move(){
-    this.router.navigateByUrl('/dashboard/tab1')
+    this.router.navigateByUrl('/tab1')
   }
  
-  trackOrder(){
-    console.log('lkfjafjklalsjdfkasjdflkja')
-    this.CM.presentBillSlide().then(val=>{
-      console.log(val,'presentBillSlide')
-    })
-  }
+  
+  
 }

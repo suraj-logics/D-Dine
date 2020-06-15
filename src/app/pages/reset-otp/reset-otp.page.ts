@@ -6,6 +6,7 @@ import { CommonService } from '../../../shared/services/common.service';
 import { UserService } from '../../../shared/services/user.service';
 import { error } from 'protractor';
 import { AuthService } from 'src/shared/services/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-reset-otp',
@@ -28,10 +29,12 @@ export class ResetOtpPage implements OnInit {
       'height': '14vw',
       'margin': ' 0 5px',
       'text-align': 'center',
-      'font-size': '9vw',
-      'border': 'solid 1px #ccc',
-      'box-shadow': ' 0 0 5px #ccc inset',
+      'font-size': '6vw',
       'outline': 'none',
+      'border': 'none',
+      'border-bottom': '2px solid rgb(173, 173, 173)',
+      'background': 'none',
+      'border-radius':'0'
     },
   };
   @ViewChild('otp1', { static: false }) el1: ElementRef;
@@ -42,7 +45,7 @@ export class ResetOtpPage implements OnInit {
   constructor(
     private rd: Renderer2,
     public CS: CommonService,
-    public auth: AuthService, private formBuilder: FormBuilder, private router: Router, private commonService: CommonService, private userService: UserService) {
+    public auth: AuthService, public loc:Location,private formBuilder: FormBuilder, private router: Router, private commonService: CommonService, private userService: UserService) {
     this.verifyForm = this.formBuilder.group({
       otp1: ['', Validators.required],
       otp2: ['', Validators.required],
@@ -52,7 +55,7 @@ export class ResetOtpPage implements OnInit {
     CS.presentLoading('')
     if (this.auth.getLoggedUser()) {
       CS.dismissLoading();
-      router.navigateByUrl('/dashboard/tab1')
+      router.navigateByUrl('/tab1')
     } else {
       CS.dismissLoading();
     }

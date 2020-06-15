@@ -1,7 +1,9 @@
 
 <ion-content>
   <div  class="whole-div">
- 
+    <div  class="first-div">
+      <ion-icon name="arrow-back-outline" (click)="loc.back()"></ion-icon>
+    </div>
     <form  class="second-div" [formGroup]="verifyForm" (ngSubmit)="Verify()">
       <div>
         <div class="icon-div">
@@ -32,6 +34,10 @@
       <button class="button verify-btn ion-activatable ripple-parent" [disabled]="isSubmitted">Verify
         <ion-ripple-effect type="unbounded"></ion-ripple-effect>
       </button>
+      <button class="resend ion-activatable ripple-parent " [disabled]="isSubmitted">Resend OTP
+        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+      </button>
+      <p class="validP">Valid for 20 min</p>
     </form>
   </div>
 </ion-content>

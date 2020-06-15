@@ -4,11 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard'
 
 const routes: Routes = [
-  {
-    path: 'dashboard',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
-    canActivate: [AuthGuard]
-  },
+ 
   {
     path: '',
     loadChildren: () => import('./pages/onboarding/onboarding.module').then(m => m.OnboardingPageModule),
@@ -36,7 +32,12 @@ const routes: Routes = [
   {
     path: 'reset-otp',
     loadChildren: () => import('./pages/reset-otp/reset-otp.module').then( m => m.ResetOtpPageModule)
-  }
+  },
+  {
+    path: 'tab1',
+    loadChildren: () => import('./tab1/tab1.module').then(m => m.Tab1PageModule),
+    canActivate: [AuthGuard]
+  },
 
 
 ];

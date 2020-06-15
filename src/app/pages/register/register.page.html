@@ -63,7 +63,7 @@
           </ion-col>
           <ion-col size="10">
             <ion-item >
-              <ion-input  type="{{type1=='eye'?'Password':'text'}}" placeholder="Password" formControlName="password"></ion-input>
+              <ion-input  type="{{type=='eye'?'text':'Password'}}" placeholder="Password" formControlName="password"></ion-input>
               <ion-icon name="{{type1}}" slot="end" (click)='psChangeType(type1)' style="color: #ffc409"></ion-icon>
             </ion-item>
             <span class="error ion-padding" *ngIf="isSubmitted && errorControl.password.errors?.required">
@@ -77,7 +77,7 @@
           </ion-col>
           <ion-col size="10">
             <ion-item >
-              <ion-input  type="{{type=='eye'?'Password':'text'}}" placeholder="Confirm Password" formControlName="confirmpassword" (ionChange)="checkValidation($event)"></ion-input>
+              <ion-input  type="{{type=='eye'?'text':'Password'}}" placeholder="Confirm Password" formControlName="confirmpassword" (ionChange)="checkValidation($event)"></ion-input>
               <ion-icon name="{{type}}" (click)='changeType(type)'  slot="end" style="color: #ff5c6c"></ion-icon>
             </ion-item>
             <span class="error ion-padding" *ngIf="submit && errorControl.confirmpassword.errors?.compare">

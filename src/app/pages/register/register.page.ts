@@ -16,8 +16,8 @@ export class RegisterPage implements OnInit {
   public registerform: FormGroup;
   isSubmitted = false;
   submit = false;
-  type: string = 'eye';
-  type1: string = 'eye';
+  type: string = 'eye-off';
+  type1: string = 'eye-off';
   constructor(private formBuilder: FormBuilder, private router: Router, private commonService: CommonService, private userService: UserService) {
     this.registerform = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
@@ -55,10 +55,13 @@ export class RegisterPage implements OnInit {
         this.registerform.reset();
         this.router.navigateByUrl('verification');
         this.commonService.dismissLoading();
+        this.registerform.reset();
       }, error => {
         this.registerform.value.phone_number = parseInt(JSON.parse(this.registerform.value.phone_number))
         this.commonService.Toaster(error.error.message, 'danger')
         this.commonService.dismissLoading();
+        this.registerform.reset();
+
       })
     }
   }
@@ -72,7 +75,7 @@ export class RegisterPage implements OnInit {
     if (type == 'eye-off') this.type1 = 'eye';
   }
 
-  checkValidation() {
+  checkValidation(event) {
     this.submit = true;
   }
 }

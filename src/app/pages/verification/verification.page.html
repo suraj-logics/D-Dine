@@ -2,7 +2,7 @@
 <ion-content>
   <div  class="whole-div">
     <div  class="first-div">
-      
+      <ion-icon name="arrow-back-outline" (click)="loc.back()"></ion-icon>
     </div>
     <form  class="second-div"  (ngSubmit)="Verify()">
       <div>
@@ -12,7 +12,7 @@
         <h3>Verification</h3>
       </div>
       <div class="OTP-div">
-        <ng-otp-input class="inputs"  (onInputChange)="onOtpChange($event)"  [config]="config"></ng-otp-input>
+        <ng-otp-input class="inputs"  (onInputChange)="onOtpChange($event)"   [config]="config"></ng-otp-input>
         <!-- <ion-grid>
           <ion-row>
             <ion-col size='3'>
@@ -33,6 +33,9 @@
       <button class="button verify-btn ion-activatable ripple-parent" [disabled]="isSubmitted">Verify
         <ion-ripple-effect type="unbounded"></ion-ripple-effect>
       </button>
+      <button class="resend">Resend OTP
+      </button>
+      <p class="validP">Valid for 20 min</p>
     </form>
   </div>
 </ion-content>

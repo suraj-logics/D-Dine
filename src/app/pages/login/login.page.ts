@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
   isSubmitted = false;
   isSubmitted1 = false;
   hLogin: boolean = true;
-  type: string = 'eye';
+  type: string = 'eye-off';
   show = true;
 
   constructor(private formBuilder: FormBuilder, private CM: CommonService, private router: Router, private userService: UserService, private auth: AuthService) {
@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
       phone_number: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]]
     });
     if (localStorage.getItem('token')) {
-      this.router.navigateByUrl('/dashboard/tab1')
+      this.router.navigateByUrl('/tab1')
     }
   }
 
@@ -57,7 +57,7 @@ export class LoginPage implements OnInit {
     this.isSubmitted1 = false;
     this.show = true;
   }
-
+ 
   async onLogin() {
 
     this.isSubmitted = true;
@@ -73,7 +73,7 @@ export class LoginPage implements OnInit {
         this.CM.Toaster('Login successfull!', 'success')
         this.auth.setCurrentUser(res)
         this.loginform.reset();
-        this.router.navigateByUrl('/dashboard/tab2')
+        this.router.navigateByUrl('/tab1')
         this.CM.dismissLoading()
       }, error => {
         this.loginform.value.phone_number = parseInt(JSON.parse(this.loginform.value.phone_number))
@@ -87,7 +87,6 @@ export class LoginPage implements OnInit {
       })
     }
   }
-
   async onReset() {
     this.isSubmitted1 = true;
     if (!this.forgotform.valid) {
@@ -113,7 +112,7 @@ export class LoginPage implements OnInit {
   }
 
   toggle() {
-    this.show = false;
+    this.show = !this.show;
   }
 
   changeType(type) {
@@ -121,5 +120,8 @@ export class LoginPage implements OnInit {
     if (type == 'eye-off') this.type = 'eye';
   }
 
-
+ google(){
+   console.log('call')
+   this.auth.googleSignIn();
+ }
 }
