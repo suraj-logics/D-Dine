@@ -34,7 +34,7 @@ export class ResetOtpPage implements OnInit {
       'border': 'none',
       'border-bottom': '2px solid rgb(173, 173, 173)',
       'background': 'none',
-      'border-radius':'0'
+      'border-radius': '0'
     },
   };
   @ViewChild('otp1', { static: false }) el1: ElementRef;
@@ -45,7 +45,7 @@ export class ResetOtpPage implements OnInit {
   constructor(
     private rd: Renderer2,
     public CS: CommonService,
-    public auth: AuthService, public loc:Location,private formBuilder: FormBuilder, private router: Router, private commonService: CommonService, private userService: UserService) {
+    public auth: AuthService, public loc: Location, private formBuilder: FormBuilder, private router: Router, private commonService: CommonService, private userService: UserService) {
     this.verifyForm = this.formBuilder.group({
       otp1: ['', Validators.required],
       otp2: ['', Validators.required],
@@ -103,8 +103,9 @@ export class ResetOtpPage implements OnInit {
   resendOtp() {
     this.commonService.presentLoading('');
     this.userService.generateOtp({ phone_number: parseInt(localStorage.getItem('phone')), user_type: "u" }, '/authentication/generate-otp').subscribe((res: any) => {
+      this.commonService.Toaster('Otp sent register number!', 'success')
       this.commonService.dismissLoading()
-    },error=>{
+    }, error => {
       this.commonService.Toaster(error.error.message, 'danger')
       this.commonService.dismissLoading()
     })
