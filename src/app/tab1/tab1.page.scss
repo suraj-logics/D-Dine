@@ -18,12 +18,16 @@
         margin: 0;
     }
     .icon-div{
+        margin-top: 1vw;
         text-align: center;
-        font-size: 10vw;
-        padding: 2vw;
+       
+        //padding: 2vw;
         width: 15vw;
         height: 15vw;
         border-radius: 4vw;
+        ion-icon{
+            font-size: 10vw;
+        }
     }
    ion-col{
     height: 20vw;
@@ -32,7 +36,7 @@
       
     }
     .active-slide-box{
-        border-bottom: 2px solid #ffc409;
+        border-bottom: 2px solid var(--ion-theme);
     }
     .slide-box{
        // background: white;
@@ -45,7 +49,7 @@
         margin: 0;
         font-size: 5vw;
         margin-top: 1vw;
-        font-weight: bold;
+        font-weight: 400;
         color: black;
         padding-left: 1vw;
     padding-right: 1vw;
@@ -63,25 +67,22 @@
                     text-align: center;
                     height: 100%;
                 }
-                img{
+                .foodImg{
                     height: 18vw;
                     -o-object-fit: cover;
                     object-fit: cover;
-                    border-radius: 24px;
+                    border-radius: 12px;
                     margin-top: 7%;
                     width: 100%;
                 }
                 h2{
-                   
-                    font-family: sans-serif;
                     margin: 0;
-                    font-weight: bold;
+                    font-weight: 300;
                     padding-left: 2vw;
                     padding-right: 2vw;
                     padding-top: 1vw;
                     font-size: 5vw;
-                    color: #040404;
-
+                    color: black;
                 }
                 
                 //
@@ -92,14 +93,14 @@
                         margin: 0;
                         /* padding-top: 4vw; */
                         color: #1e2023;
-                        background: #ffc409;
+                        background: var(--ion-theme);
                         //border-radius: 48px;
                         margin-top: 5vw;
                     }
                 }
                 .fab{
                     margin-top: 6vw;
-                --background: #ffc409;
+                --background: var(--ion-theme);
                 }
                 
                 .col1{
@@ -115,11 +116,10 @@
                         
                     }
                     .rs{
-                        color: #202122;
+                        color: #33383e;
                         font-size: 4vw;
-                        font-weight: bold;
+                        font-weight: 200;
                         margin: 2px 2vw 0 2vw;
-                        font-family: sans-serif;
                     }
                 }
                 ion-grid{
@@ -155,7 +155,9 @@
                 bottom: 17vw;
                 left: 72vw;
                 height: 7vw;
-                border: 2px solid #ffc409;
+                border: 2px solid var(--ion-theme);
+                border-radius: 5px;
+                color: var(--ion-gray);
                 .plus{
                     text-align: center;
                     ion-button{
@@ -171,7 +173,7 @@
                 .count{
                     text-align: center;
                     p{
-                        color: #161414;
+                        //color: #161414;
                         font-size: 4vw;
                         margin: 0;
                         font-weight: bold;
@@ -181,7 +183,7 @@
                     background: #ffff000a;
                     font-size: 4vw;
                     outline: none;
-                    color: black;
+                    color: var(--ion-gray);
                     width: 100%;
                     height: 100%;
                     font-weight: bold;
@@ -227,6 +229,7 @@
             }
             .slideDiv{
                 height:10%; 
+               
             }
            
 
@@ -243,41 +246,54 @@
                     background: white;
                     padding-top: 3%;
                     padding-bottom: 40vw;
-                   // height: 100%;
+                    min-height: 100%;
                     h1{
                         text-align: center;
                         padding-top: 15vw;
                         font-size: 6vw;
                     }
                     h5{
-                        text-align: center;
-                        font-size: 7vw;
-                        font-weight: lighter;
+                        font-size: 5vw;
+                        font-weight: bold;
+                        padding-left: 5vw;
                     }
                 }
 
                 .filter{
-                    width: 15%;
+                    width: 44%;
                     position: absolute;
-                    right: 2px;
-                    bottom: 2vw;
+                    right: 0.5vw;
+                    top: 33vw;
+                    ion-item{
+                        --border-style:none;
+                        ion-label{
+                            font-size: 3vw;
+                            text-align: right;
+                        }
+                    }
+                    ion-toggle{
+                        --background: #fde598;
+                        --background-checked: #c1c0c0;
+                        --handle-background: #ffc409;
+                        --handle-background-checked: #ffc409;
+                    }
                     img{
                         background-color: #f9f9f9;
-                        height: 11vw;
-                        border: 2px solid white;
+                        height: 9vw;
+                        border: 2px solid #867a7a;
                         border-radius: 11px;
                         outline: none;
                     }
                 }
 
                 .vegNonVeg{
+                    height: 4vw;
+                    width: 4vw;
+                    margin-right: 1vw;
                     position: absolute;
-                    bottom: 11px;
-                    left: 82vw;
-                    width: fit-content;
-                    ion-icon{
-                    border-radius: 25px;
-                    margin: 1px;
+                    bottom: 8vw;
+                    right: 3vw;
+                    //background: #E91E63;
                     }
                     
                     .nonVeg{
@@ -286,7 +302,6 @@
                     .veg{
                     color: #1eff00;
                     }
-                }
 
           ///      search
           
@@ -316,10 +331,10 @@
     top:6vw;
     background: #f9f9f9;
     //border: 2px solid white;
-    -webkit-transition: all 0.7s ease-in-out;
-    -moz-transition: all 0.7s ease-in-out;
-    -o-transition: all 0.7s ease-in-out;
-    transition: all 0.7s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
     height: 12vw;
     line-height: 18px;
     padding: 0 2px 0 2px;
@@ -346,8 +361,8 @@
 
                 .itemAdded{
                     position: fixed;
-                    height: 19vw;
-                    background: #ffc409;
+                    height: 16vw;
+                    background: var(--ion-theme);
                     width: 96%;
                     left: 2vw;
                     bottom: 2vw;
@@ -362,18 +377,16 @@
                     }
                     h2{
                         margin: 0;
-                    
-                        font-size: 6vw;
+                        font-size: 5vw;
                         padding-left: 2vw;
                         font-weight: bold;
                         color: white;
-                        font-family: sans-serif;
+                        //font-family: sans-serif;
                     }
                     h3{
+                        font-size: 4vw;
                         margin: 0;
-                        font-size: 5vw;
-                        margin: 0;
-                        margin-top: 6vw;
+                        margin-top: 5vw;
                         font-weight: bold;
                         color: white;
                     }

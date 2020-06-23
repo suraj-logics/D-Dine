@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastController, LoadingController, PopoverController } from '@ionic/angular';
+import { ToastController, LoadingController, PopoverController, MenuController, AlertController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { ExploreContainerComponent } from 'src/app/components/modal/explore-container.component';
 import { PopoverComponent } from 'src/app/components/popover/popover.component';
@@ -15,11 +15,37 @@ export class CommonService {
     private Toast:ToastController,
     public loadingController: LoadingController,
     public modalController: ModalController,
-    public popoverController: PopoverController) { }
+    public popoverController: PopoverController,
+    private menu: MenuController,
+    private alertController:AlertController) { }
   navigate(url){
  this.router.navigateByUrl(url)
   }
- 
+  async presentAlertConfirm(msg,callback) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirm!',
+      message: msg,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            callback()
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Confirm',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
   async Toaster(msg,color){
     //"primary", "secondary", "tertiary", "success", "warning", "danger", "light", "medium", and "dark"
     const toast = await this.Toast.create({
@@ -30,7 +56,13 @@ export class CommonService {
     });
     toast.present();
   }
-
+  openFirst() {
+    this.menu.enable(true, 'first');
+    this.menu.open('first');
+  }
+  closeMenu(){
+    this.menu.close()
+  }
   async presentModal(data,info,callback) {
     const modal = await this.modalController.create({
       component: ExploreContainerComponent,
@@ -49,12 +81,14 @@ export class CommonService {
   async presentBillSlide(callback) {
     const modal = await this.modalController.create({
       component: OrderSlideComponent,
+      cssClass: 'custom-modal2',
       swipeToClose: true,
+      mode:'ios'
     });
     modal.onDidDismiss()
       .then((data) => {
        console.log(data,'modal data')
-       callback(true)
+       callback(data)
     });
 
     return await modal.present();
@@ -87,12 +121,29 @@ async dismissModelWithData(role){
     const popover = await this.popoverController.create({
       component:PopoverComponent ,
       cssClass: 'my-custom-class',
-      event: ev,
-      translucent: true
+      translucent: true,
+      componentProps: {screen:'popover'},
+      //mode:'ios'
     });
+    popover.onDidDismiss()
+    .then((data) => {
+     console.log(data,'modal data')
+     ev(true)
+  });
     return await popover.present();
   }
   async dismissPopover(){
     return await this.popoverController.dismiss();
   }
+
+  async presentModalAlert(screen,data) {
+    const modal = await this.modalController.create({
+      component: PopoverComponent,
+      swipeToClose: true,
+      cssClass: screen,
+      componentProps: {screen,data}
+    });
+    return await modal.present();
+  }
+
 }

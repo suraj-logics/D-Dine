@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { CommonService } from 'src/shared/services/common.service';
 import { OrderService } from 'src/shared/services/order.service';
-import { IonContent } from '@ionic/angular';
-
+import { IonContent, IonInput } from '@ionic/angular';
+import { MenuController } from '@ionic/angular';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -10,11 +11,11 @@ import { IonContent } from '@ionic/angular';
 })
 export class Tab1Page {
   @ViewChild('Content', { static: true }) content: IonContent;
+  @ViewChild('searchIn', { static: true }) input: IonInput;
   slideOpts = {
     //autoplay: true,
-    initialSlide: 2,
+    initialSlide: 0,
     slidesPerView: 3,
-    centeredSlides: true,
     spaceBetween: 0,
     speed: 400,
   };
@@ -30,7 +31,8 @@ export class Tab1Page {
   string: string='';
   open: boolean = false;
   totalPrice:any=1;
-  constructor(public CM: CommonService, private orderService: OrderService) {
+  filterTog:any;
+  constructor(public CM: CommonService, private orderService: OrderService,private menu: MenuController,private router:Router) {
 
   }
   ionViewDidEnter() {
@@ -38,7 +40,11 @@ export class Tab1Page {
     this.presentMenu('')
     this.slide = true;
     this.countTotal()
-
+    this.orderService.Menu('', '', '').subscribe(res => {
+      this.catagory=[];
+      let T=res.menu;
+      T.map(val=>this.catagory.push({ name: val.Category_name, id: val.Category_id }))
+    })
   }
   present(item) {
     this.CM.presentModal(item, 'info',(res=>{
@@ -46,7 +52,13 @@ export class Tab1Page {
       this.countTotal()
     }))
   }
-
+  closeSearch(){
+    if(this.string.length==0){
+      this.open=false;
+    }
+    console.log('kjgufj')
+  }
+  
   search() {
    // console.log(this.string)
     this.orderService.order({ string: this.string }).subscribe(res => {
@@ -62,9 +74,9 @@ export class Tab1Page {
     this.orderService.Menu('', '', string).subscribe(res => {
       if(string==''){
         this.menuList = res.menu;
-        this.catagory=[];
-        this.menuList.map(val => this.catagory.push({ name: val.Category_name, id: val.Category_id }))
-        this.menuList.map(val => val.items.map(T => {
+        
+        this.menuList.map(val =>{ 
+           val.items.map(T => {
           T.hide = false;
           if (cart && cart.length && cart.find(val => val.obj.id == T.id)) {
             let val = cart.find(val => val.obj.id == T.id);
@@ -72,7 +84,7 @@ export class Tab1Page {
           } else {
             T.qty = 0;
           }
-        }))
+        })})
         this.CM.dismissLoading();
       }else{
         let searchData=res.menu;
@@ -91,11 +103,19 @@ export class Tab1Page {
      // console.log(res)
     })
     this.countTotal()
+    
   }
-  
-  filter() {
-    this.nonveg = !this.nonveg;
-    this.menuList.map(val => val.items.map(T => { if (T.is_veg == false) { this.nonveg == true ? T.hide = true : T.hide = false; } }))
+  check(){
+    if(localStorage.getItem('veg')=='true'){
+    this.menuList.map(val => val.items.map(T => { if (T.is_veg == false) { localStorage.getItem('veg') == 'true' ? T.hide = true : T.hide = false; } }))
+    return 'false';
+  }
+      return 'true';
+  }
+
+  filter(ev) {
+    ev.detail.checked?localStorage.setItem('veg','false'):localStorage.setItem('veg','true');
+    this.menuList.map(val => val.items.map(T => { if (T.is_veg == false) { localStorage.getItem('veg') == 'true' ? T.hide = true : T.hide = false; } }))
   }
   order(quantity, i, cat) {
     this.menuList.map(val => {
@@ -128,6 +148,7 @@ export class Tab1Page {
   toggle(t) {
     this.string='';
     this.open = t == true ? false : true;
+    let set=setTimeout(()=>{if(t == false)this.input.setFocus();}, 1000);
   }
   Qty(dish) {
     let cart = JSON.parse(localStorage.getItem('Cart'))
@@ -148,6 +169,19 @@ export class Tab1Page {
     this.activeCat = id;
     var titleELe = document.getElementById(id);
     this.content.scrollToPoint(0, titleELe.offsetTop - 180, 1000);
+    console.log(titleELe.offsetTop-180)
+  }
+  scroll(ev){
+    
+    this.catagory.map(val=>{
+     let el=document.getElementById(val.id).offsetTop;
+    let top=document.getElementById(val.id).offsetTop-ev.detail.scrollTop;
+      if(el==top){
+        this.activeCat = val.id;
+      }
+      console.log(el,top,'macth',val.name)
+      
+    })
   }
   
   countTotal(){
@@ -170,8 +204,17 @@ export class Tab1Page {
 
   trackOrder(){
     this.CM.presentBillSlide((res)=>{
+      if(res&&res.data=='done'){
+        this.router.navigateByUrl('/finalOrder')
+      }else{
+        
+      }
       this.presentMenu('')
       this.countTotal()
     })
+  }
+  
+  vegOption(){
+    this.CM.presentPopover('')
   }
 }

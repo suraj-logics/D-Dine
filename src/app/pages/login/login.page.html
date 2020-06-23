@@ -11,13 +11,13 @@
         <ion-grid>
           <ion-row>
             <ion-col size="1">
-              <ion-icon name="phone-portrait-outline" style="color: #ffc409"></ion-icon>
+              <ion-icon name="phone-portrait-outline" style="color: var(--ion-theme)"></ion-icon>
             </ion-col>
             <ion-col size="10">
               <ion-item>
                 <ion-input type="number" placeholder="Moblie No." maxlength="10" formControlName="phone_number" required>
                 </ion-input>
-                <ion-icon name="checkmark-circle" style="color: #ffc409" slot="end"></ion-icon>
+                <ion-icon name="checkmark-circle" style="color: var(--ion-theme)" slot="end"></ion-icon>
               </ion-item>
               <span class="error ion-padding" *ngIf="isSubmitted && errorControl.phone_number.errors?.required">
                 Moblie No. is required.
@@ -50,21 +50,22 @@
           <button class="button ion-activatable ripple-parent">Login
             <ion-ripple-effect type="unbounded"></ion-ripple-effect>
           </button>
-      
+      <h2 class="or">OR</h2>
+      <div
+      class=" google ion-activatable ripple-parent" (click)="google()" >
+             <img src="../../../assets/google.png" alt="" >
+             <h1>
+             Continue With Google
+            </h1>
+        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+    </div>
           <!-- <button  *ngIf='hLogin==false' class="button ion-activatable ripple-parent" (click)='signUp()'>Sign Up
           <ion-ripple-effect type="unbounded"></ion-ripple-effect>
         </button> -->
           <div class="sign-in">
             <p style="margin-left: 0;">Don't have an account? <span routerLink='/register'>Register Now</span></p>
           </div>
-          <div
-          class=" google ion-activatable ripple-parent" (click)="google()" >
-                 <img src="../../../assets/google.png" alt="" >
-                 <h1>
-                 Continue With Google
-                </h1>
-            <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-        </div>
+         
         </div>
       </form>
     </div>
@@ -88,13 +89,13 @@
         <ion-grid>
           <ion-row>
             <ion-col size="1">
-              <ion-icon name="phone-portrait-outline" style="color: #ffc409"></ion-icon>
+              <ion-icon name="phone-portrait-outline" style="color: var(--ion-theme)"></ion-icon>
             </ion-col>
             <ion-col size="10">
               <ion-item>
                 <ion-input type="number" placeholder="Moblie No." maxlength="10" formControlName="phone_number" required>
                 </ion-input>
-                <ion-icon name="checkmark-circle" style="color: #ffc409" slot="end"></ion-icon>
+                <ion-icon name="checkmark-circle" style="color: var(--ion-theme)" slot="end"></ion-icon>
               </ion-item>
               <span class="error ion-padding" *ngIf="isSubmitted1 && errorControl1.phone_number.errors?.required">
                 Moblie No. is required.

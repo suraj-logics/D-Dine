@@ -1,22 +1,23 @@
 .main-content{
-    --background:#ffc409;
+    --background:white;
     .header{
         height: 8%;
         width: 100%;
         position: fixed;
-        background: #ffc409;
+        background: white;
         top: 0;
         opacity: 1;
         z-index: 111;
     top: 0;
     border-radius: 0 0 20px 20px;
         h1{
-            font-size: 21px;
-    margin: 6px;
-    padding: 3vw;
-    color: black;
-    font-weight: 900;
-    margin-left: 16vw;
+        text-align: center;
+        font-size: 5vw;
+        margin: 0;
+        /* padding-left: 2vw; */
+        color: black;
+        font-weight: 900;
+        margin-top: 4vw;
         }
      ion-icon{
         font-size: 8vw;
@@ -26,53 +27,65 @@
      
     }
     .order{
-        height: 100%;
-        
+        min-height: 90%;
         .add{
             position: relative;
             height: 10vw;
             h3{
                 padding-left: 4vw;
                 font-weight: bold;
-                font-family: sans-serif;
+                //font-family: sans-serif;
             }
             .fab{
                 width: 9vw;
                 height: 9vw;
-                --background: #ffc409;
-             --background-activated: none;
-             position: absolute;
-    top: -5px;
-    right: 5vw;
-    ion-icon{
-        color: black;
-    }
+                --background: var(--ion-theme);
+                --background-activated: none;
+                position: absolute;
+                top: -5px;
+                right: 5vw;
+                ion-icon{
+                    color: black;
+                }
             }
 
         }
         ion-textarea{
-            border: 2px solid gray;
-            height: 39vw;
-            margin-top: 8vw;
+            height: 8vw;
+            margin: 2vw;
             border-radius: 19px;
             font-size: 5vw;
+            padding: 3vw;
         }
         width: 100%;
         background: white;
         margin-top: 2vw;
         border-radius: 30px 30px 0 0;
         padding: 4vw;
+        padding: 4vw;
+        padding-top: 0;
         .item{
             height: 20vw;
             margin-top: 4vw;
             position: relative;
            // border-bottom: 2px solid #dbcfcf;
             
-            img{
-                height: 15vw;
-                border-radius: 10px;
-                margin-top: 2vw;
-                object-fit: cover;
+           .foodImg{
+            height: 15vw;
+            /* border-radius: 10px; */
+            margin-top: 2vw;
+            -o-object-fit: cover;
+            object-fit: cover;
+            width: 100%;
+            }
+            .vegVonVeg{
+                height: 5vw;
+                width: 5vw;
+                margin-right: 1vw;
+                position: absolute;
+                top: 1.6vw;
+                left: 2vw;
+                background: white;
             }
             h3{
                 font-size: 4vw;
@@ -89,13 +102,24 @@
                 }
                 h6{
                     font-size: 5vw;
-    font-weight: bold;
-    width: 100%;
+                    font-weight: bold;
+                    width: 100%;
+                    color: var(--ion-gray);
+                    margin-top: 10vw;
+                }
+                h4{
+                    font-size: 5vw;
+                    font-weight: bold;
+                    width: 100%;
+                    color: var(--ion-gray);
+                    margin-top: 3vw;
+
                 }
             }
         }
         .Total{
             border-top: 2px solid #a9a4a4;
+            margin-top: 14vw;
             h3{
                 font-size: 5vw;
                 font-weight: bold;
@@ -105,6 +129,8 @@
                 font-size: 5vw;
                 font-weight: bold;
                 width: 100%;
+                color: var(--ion-gray);
+
             }
         }
     }
@@ -113,10 +139,11 @@
 .counter{
     position: absolute;
     width: 18%;
-    bottom: 3vw;
-    left: 20vw;
+    bottom: 12vw;
+    right: 9vw;
     height: 7vw;
-    border: 2px solid #ffc409;
+    border: 2px solid var(--ion-theme);
+    border-radius: 4px;
     .plus{
         text-align: center;
         ion-button{
@@ -148,3 +175,11 @@
         font-weight: bold;
      }
 }
+.toggle{
+    background: #d7d8da;
+    height: 2vw;
+    margin: auto;
+    margin-top: 1vw;
+    width: 14vw;
+    border-radius: 13px;
+  }

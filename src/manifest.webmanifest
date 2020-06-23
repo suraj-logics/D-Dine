@@ -1,9 +1,10 @@
 {
   "name": "D'Order",
   "short_name": "D'Order",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
-  "display": "standalone",
+  "theme_color": "#ffc409",
+  "background_color": "#ffc409",
+  "display": "fullscreen",
+  "orientation": "portrait",
   "scope": "./",
   "start_url": "./",
   "icons": [

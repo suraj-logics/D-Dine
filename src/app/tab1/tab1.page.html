@@ -1,13 +1,13 @@
 
 
-<ion-content #Content [fullscreen]="true">
+<ion-content #Content [fullscreen]="true"   [scrollEvents]="true" (ionScroll)='scroll($event)'>
   <div class="header">
   <div class="top-div">
   <ion-grid>
     <ion-row>
       <ion-col size='2'>
         <div class="icon-div">
-          <ion-icon name="reorder-three" (click)='CM.presentPopover($event)'></ion-icon>
+            <ion-menu-button autoHide="false" style="font-size:7vw"></ion-menu-button>
         </div>
       </ion-col>
       <ion-col size='8'>
@@ -19,7 +19,7 @@
           <div  class="searchDiv" [ngStyle]="{'width': open?'94%':'7%','border':open?'2px solid white':'none','background':open?'#e8e5e5':'none'}">
               <ion-icon name="search" class="icon1" slot="start" (click)="toggle(open)"></ion-icon>
               <ion-icon name="close-circle-outline" *ngIf='string.length!=0' class="icon2" slot="end" (click)="close()"></ion-icon>
-            <ion-input (keyup)='presentMenu(string)'  mode='md' [(ngModel)]='string' [ngStyle]="{'width': open?'80%':'6vw','display': open?'unset':'none'}" class="searchInput"  > 
+            <ion-input #searchIn (ionChange)='presentMenu(string)' (ionBlur)='closeSearch()'  mode='md' [(ngModel)]='string' [ngStyle]="{'width': open?'80%':'6vw','display': open?'unset':'none'}" class="searchInput"  > 
             </ion-input>
           </div>
           <!-- <div class="filter" (click)="filter()">
@@ -45,11 +45,9 @@
         </ion-row>
       </ion-grid> 
     </div>
-    <div class="filter" (click)="filter()">
-      <img src="../../assets/filter.png" alt="" class="{{nonveg?'active-slide-box':''}}">
-    </div>
+    
    </div> -->
-   <div class="slideDiv" *ngIf='string.length==0'>
+   <div class="slideDiv"  [ngStyle]="{'display':string.length==0?'unset':'none'}">
     <ion-slides pager="false" [options]="slideOpts" *ngIf='slide'>
       <ion-slide  *ngFor='let cat of catagory' (click)="gotoTop(cat.id)">
         <div  class="slide-box ion-activatable ripple-parent {{activeCat==cat.id?'active-slide-box':''}}"> 
@@ -64,6 +62,12 @@
 
 
 <!-- <====list-start====> -->
+<div class="filter">
+  <ion-item>
+    <ion-label>Only veg</ion-label>
+    <ion-toggle (ionChange)='filter($event)' mode='md' checked="{{check()}}" ></ion-toggle>
+  </ion-item>
+</div>
 <div class="list" *ngIf='string.length==0' >
   <ng-container *ngFor='let cat of menuList'>
   <h5 id='{{cat.Category_id}}' >{{cat.Category_name}}</h5>
@@ -73,7 +77,7 @@
         <ion-row>
           <ion-col size='3' (click)='present(dish)'>
            <div class='img-div'>
-            <img  [src]="dish&&dish.image?dish.image:'../../../assets/no-item-image.svg'">
+            <img class="foodImg" [src]="dish&&dish.image?dish.image:'../../../assets/no-item-image.svg'">
            </div>
           </ion-col>
           <ion-col size='6' class="col1" (click)='present(dish)'>
@@ -95,10 +99,10 @@
                </button>
               
             </ion-col>
-            <ion-col class="count" *ngIf='dish.qty==0'>
-              <p style="padding-left:1vw;"> Add</p>
+            <ion-col style="padding-top: 0.3vw;" class="count" *ngIf='dish.qty==0'>
+              <p style="padding-left:1vw;"> ADD</p>
             </ion-col>
-            <ion-col  class="count" *ngIf='dish.qty>0'>
+            <ion-col  style="padding-top: 0.7vw;" class="count" *ngIf='dish.qty>0'>
               <p>{{dish.qty}}</p>
             </ion-col>
             <ion-col class="minus">
@@ -111,7 +115,7 @@
       
       </div>
       <div class="vegNonVeg">
-        <ion-icon name="stop-circle-outline" class="{{dish.is_veg?'veg':'nonVeg'}}"></ion-icon>
+        <img src="../../../assets/{{dish.is_veg?'veg':'nonVeg'}}.png" alt="">
       </div>
     </div>
 
@@ -135,7 +139,7 @@
         <ion-row>
           <ion-col size='3' (click)='present(dish)'>
            <div class='img-div'>
-            <img  [src]="dish&&dish.image?dish.image:'../../../assets/no-item-image.svg'">
+            <img class="foodImg" [src]="dish&&dish.image?dish.image:'../../../assets/no-item-image.svg'">
            </div>
           </ion-col>
           <ion-col size='6' class="col1" (click)='present(dish)'>
@@ -173,7 +177,7 @@
       
       </div>
       <div class="vegNonVeg">
-        <ion-icon name="stop-circle-outline" class="{{dish.is_veg?'veg':'nonVeg'}}"></ion-icon>
+        <img src="../../../assets/{{dish.is_veg?'veg':'nonVeg'}}.png" alt="">
       </div>
     </div>
   </ng-container>
@@ -188,7 +192,7 @@
         </ion-col>
         <ion-col size='5'>
           
-          <h3 style="padding-left: 4vw">View Cart <span style="padding-left: 2vw"> ></span></h3>
+          <h3 style="padding-left: 10vw">View Cart <span style="padding-left: 2vw"> ></span></h3>
         </ion-col>
       </ion-row>
     </ion-grid>

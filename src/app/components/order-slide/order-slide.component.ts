@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/shared/services/common.service';
 import { OrderService } from 'src/shared/services/order.service';
 import { Platform } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order-slide',
@@ -40,7 +41,7 @@ export class OrderSlideComponent implements OnInit {
   changeOrder(quantity,i){
     if(this.orderItems[i]&&this.orderItems[i].obj&&this.orderItems[i].obj.qty){
     this.orderItems[i].obj.qty=quantity==true?this.orderItems[i].obj.qty+1:this.orderItems[i].obj.qty>0?this.orderItems[i].obj.qty-1:0;
-    this.total=quantity==true?this.total+this.orderItems[i].obj.price:this.total-this.orderItems[i].obj.price;
+    this.total=quantity==true?this.total+parseFloat(this.orderItems[i].obj.price):this.total-parseFloat(this.orderItems[i].obj.price);
   }
     if(this.orderItems[i]&&this.orderItems[i].obj&&this.orderItems[i].obj.qty==0){this.orderItems.splice(i,1); localStorage.setItem('Cart',JSON.stringify(this.orderItems))}
     if(this.orderItems.length)this.orderService.addToCart(this.orderItems[i].id,this.orderItems[i].obj)
@@ -61,21 +62,20 @@ export class OrderSlideComponent implements OnInit {
        this.CM.dismissLoading();
        this.CM.Toaster('successfully placed order','success')
         localStorage.setItem('Cart','[]')
-        if(localStorage.getItem('user_time_id')){
           if(res&&res.message.user_time_id){
             localStorage.setItem('user_time_id',res.message.user_time_id);
           }
-        }
-        this.CM.dismissModelWithData('order');
+          localStorage.setItem('order','yes');
+        this.CM.dismissModelWithData('done');
     },err=>{
       this.CM.dismissLoading();
       this.CM.Toaster(err.error.message,'danger')
       console.log(err,'order err')
-      this.CM.dismissModelWithData('order');
+      this.CM.dismissModelWithData('error');
+      ////for test
     })
-    if(this.plateForm.is('mobileweb')&&!this.plateForm.is('desktop')){
-      this.orderService.payNow({amount:this.total})
-    }
+   
   }
+  
   
 }

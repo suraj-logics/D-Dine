@@ -1,16 +1,89 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+
 .pop{
-    h3{
-        text-align: center;
-        font-size: 5vw;
-        font-weight: bold;
-        font-family: sans-serif;
-    }
-    ion-icon{
-        font-size: 7vw;
-    color: #ffc409;
-    }
-    ion-label{
-        padding: 6px;
+    --overflow: hidden;
+}
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; }
+
+/****** Style Star Rating Widget *****/
+
+.rating { 
+  border: none;
+  text-align: center;
+  width: fit-content;
+  margin: auto;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+/* .rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+} */
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+ font-size: 7vw
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFD700;  } 
+
+.feedHeader{
+    height: 20%;
+    background: var(--ion-theme);
+    color: white;
+    h1{
+        margin: 0;
     text-align: center;
+    padding-top: 4vw;
+    font-size: 7vw;
+    font-weight: bold;
+    letter-spacing: .4vw;
+    
     }
+}
+.stars{
+    margin-top: 6vw;
+    p{
+        text-align: center;
+        font-size: 4vw;
+        color: var(--ion-gray);
+    }
+}
+ion-item{
+    margin: 2vw;
+    margin-top: 4vw;
+}
+.btn-grid{
+    margin-top: 7vw;
+    text-align: center;
+.btns{
+    width: 90%;
+    height: 10vw;
+    background: transparent;
+    border: 2px solid var(--ion-theme);
+    border-radius: 8px;
+    font-size: 4vw;
+
+}
 }

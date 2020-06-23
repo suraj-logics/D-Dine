@@ -38,7 +38,11 @@ const routes: Routes = [
     loadChildren: () => import('./tab1/tab1.module').then(m => m.Tab1PageModule),
     canActivate: [AuthGuard]
   },
-
+  {
+    path: 'finalOrder',
+    loadChildren: () => import('./tab2/tab2.module').then(m => m.Tab2PageModule),
+    canActivate: [AuthGuard]
+  },
 
 ];
 @NgModule({

@@ -26,17 +26,17 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 @font-face {
-    font-family: 'Poppins';
+    font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
-    src: url('assets/fonts/poppins/Poppins-Regular.ttf');
+    src: url('assets/fonts/robot/Roboto-Regular.ttf');
 }
 html {
   scroll-behavior: smooth;
 }
 
 .globleBg{
-   // --background: linear-gradient(148deg, #fdec33, #ffc033) !important;
+   // --background: linear-gradient(148deg, var(--ion-theme);, #ffc033) !important;
    //--background: linear-gradient(148deg, rgb(251, 234, 27), #ffc033) !important;
    //--background: linear-gradient(148deg, #f6f940, #f7e65a) !important;
    --background: linear-gradient(148deg, #feda25, #f7e65a) !important;
@@ -46,10 +46,10 @@ html {
     overflow: hidden;
   }
   *{
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto';
   }
   .button{
-    background: #ffc409;
+    background: var(--ion-theme);
     color: black;
     width: 85vw;
     font-weight: bold;
@@ -79,13 +79,36 @@ html {
     .modal-wrapper {
       position: absolute;
       width: 97% !important;
-      height: 125vw  !important;
-      top: calc(100% - (125vw));
+      height: 60%  !important;
+      top: calc(100% - (60%));
       border-radius: 25px 25px 0 0;
       -webkit-box-shadow: 0px -5px 46px -15px rgba(0,0,0,0.75);
       -moz-box-shadow: 0px -5px 46px -15px rgba(0,0,0,0.75);
       box-shadow: 0px -5px 46px -15px 
     }
+  }
+  .custom-modal2  {
+    ion-backdrop{
+      background: transparent;
+    }
+    outline: none;
+    .modal-wrapper {
+      position: absolute;
+      width: 97% !important;
+      height:85%  !important;
+      top: calc(100% - (85%));
+      border-radius: 25px 25px 0 0;
+      -webkit-box-shadow: 0px -5px 46px -15px rgba(0,0,0,0.75);
+      -moz-box-shadow: 0px -5px 46px -15px rgba(0,0,0,0.75);
+      box-shadow: 0px -5px 46px -15px 
+    }
+  }
+  .feedback{
+    .modal-wrapper {
+    height: 50%;
+    width: 82%;
+    border-radius: 18px;
+  }
   }
   ion-loading.custom-loading {
     --backdrop-opacity: 0.9;
@@ -99,3 +122,16 @@ html {
       box-shadow: none;
     }
   }
+
+  ion-menu{
+    --max-width:75%;
+    --ion-backdrop-color: #737270;
+  }
+  // ion-popover {
+  //   div.popover-content {
+  //     top: 31% !important;
+  //     left: 65% !important;
+  //     max-width: 40vw!important;
+  //     height: 29vw!important;
+  //     transform:right top !important;
+  // }}

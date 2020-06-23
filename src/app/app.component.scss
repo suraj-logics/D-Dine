@@ -22,3 +22,53 @@ p{
 } 
 
 }
+
+.menus{
+    ion-header{
+        text-align: center;
+        ion-toolbar{
+            --background: var(--ion-theme);
+        }
+    }
+}
+
+.pop{
+    margin-top: 3vw;
+    h3{
+        text-align: center;
+        font-size: 5vw;
+        font-weight: bold;
+        ////font-family: sans-serif;
+    }
+    ion-icon{
+        font-size: 7vw;
+    color: var(--ion-theme);
+    }
+    ion-label{
+        padding: 6px;
+    margin: 0;
+    padding-left: 4vw;
+    }
+    ion-item{
+        --background: #fbfbfb;
+    }
+}
+.profile{
+    --border-style: none;
+    ion-label{
+        padding-top: 1vw;
+    text-align: center;
+
+    }
+    ion-avatar{
+        margin: 2vw;
+        height: 14vw;
+        width: 14vw;
+        margin-top: 4vw;
+        margin-bottom: 4vw;
+    }
+    
+}
+ion-content{
+    --background: #fbfbfb;
+}

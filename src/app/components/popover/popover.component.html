@@ -1,12 +1,29 @@
 
-<ion-content class="pop">
-  <ion-item >
-    <ion-icon name="person-circle"></ion-icon>
-  <ion-label>Profile</ion-label>
+<ion-content class="pop" *ngIf='screen=="feedback"' fixed>
+  <div class="feedHeader"><h1>FeedBack</h1> 
+  </div>
+  <div class="stars">
+    <p>How much happy with Us!</p>
+    <!-- [(ngModel)]='obj.star1' -->
+    <fieldset class="rating">
+      <input  (change)='change($event)' type="radio" id="star1" name="rating"  /><label class="half" for="star1" title="Kinda bad - 2.5 stars"></label>
+      <input  (change)='change($event)' type="radio" id="star2" name="rating"  /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+      <input  (change)='change($event)' type="radio" id="star3" name="rating"  /><label class="half" for="star3" title="Meh - 1.5 stars"></label>
+      <input  (change)='change($event)' type="radio" id="star4" name="rating"  /><label class = "full" for="star4" title="Sucks big time - 1 star"></label>
+      <input  (change)='change($event)' type="radio" id="star5" name="rating" /><label class="half" for="star5" title="Sucks big time - 0.5 stars"></label>
+  </fieldset>
+  </div>
+  <ion-item>
+    <ion-input placeholder="Enter Your FeedBack" [(ngModel)]='feedback'></ion-input>
   </ion-item>
-<ion-item (click)='Logout()'>
-  <ion-icon name="log-out-outline"></ion-icon>
-  <ion-label>Log Out</ion-label>
-</ion-item>
-
+  <ion-grid class="btn-grid">
+    <ion-row>
+      <ion-col>
+        <button class="btns" (click)='close()'>Skip</button>
+      </ion-col>
+      <ion-col>
+        <button class="btns" (click)='submit()'>Submit</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

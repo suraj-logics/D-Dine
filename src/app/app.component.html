@@ -1,5 +1,38 @@
  <ion-app *ngIf='Internet==true'>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu contentId="content1" side="start" (ionWillOpen)="open($event)" class="menus">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>D'Order</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    
+    <ion-content >
+      <ion-item class="profile ">
+        <ion-avatar>
+          <img src="../assets/avter.svg">
+        </ion-avatar>
+        <ion-label>{{user('name')}} <p style="padding-top: 2vw;">{{user('phone_number')}}</p></ion-label>
+      </ion-item>
+      <div class="pop">
+      <!-- <ion-item >
+        <ion-icon name="person-circle"></ion-icon>
+      <ion-label>Profile</ion-label>
+      </ion-item> -->
+      <ion-item  *ngIf="order" routerLink="/finalOrder" (click)='close()'>
+        <ion-icon name="fast-food-outline"></ion-icon>
+        <ion-label>Track Order</ion-label>
+      </ion-item>
+    <ion-item (click)='Logout()'>
+      <ion-icon name="log-out-outline"></ion-icon>
+      <ion-label>Log Out</ion-label>
+    </ion-item>
+    <ion-item >
+      <ion-input placeholder="Table NO" type='number' (change)='table()' [(ngModel)]='tableNo'></ion-input>
+    </ion-item>
+  </div>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="content1" ></ion-router-outlet>
 </ion-app>
 
 <ion-content class="cont" *ngIf='Internet==false'>
@@ -13,5 +46,5 @@
     </p>
     <button class="button" shape="round">Try Again</button>
   </div>
-
+ 
 </ion-content>

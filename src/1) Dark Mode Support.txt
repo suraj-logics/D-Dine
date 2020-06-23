@@ -1,0 +1,24 @@
+1) Dark Mode Support
+2) Hambergur menu revamp - 50% width and Left allign
+3) Search auto hide and trasition speen to be decreased.
+4) Font sbka chota and Roboto Font needed.
+5) veg non-veg icon - Size to be decreased
+6) Description first line align icon veg- non veg 
+8) ADD uppercase -> border radius and ADD and + to be aligned and color should be gray not black.
+9) Category Auto highlight not working 
+10) Veg Non - Veg toggle missing
+12) Top to bottow color to be lightned.
+13) Sweets after moving to right left gets blank. - Automatically Desserts are coming which is wrong and it should start with Sweets.
+14) Auto width of Categories and should not be static.
+15) Description tray -> Everything size should be smaller and it is not slidable 
+16) Cart button -> Size should be smaller and height should be lesser.
+21) Not able to close cart.
+22) Price to be moved to right and only base price to be shown below dish and no image to be shown.
+23) "YOUR CART" - No background required and Description box width to be 60% of current size and it should come below item list and not at top and in box "Text" padding to be increased and boder radius of the box should be less. 
+24) Please check something for showing Total in some inovative manner and not like 2 + 2 = 4.
+25) Alignment of Text should be same throughout screen.
+24) Feedback Screen : Rating Stars not coming
+25) Login and Sign UP DARK nhi hua
+26) After Completing every order cart should empty.
+27) Payment Options are "CASH" and "UPI". not "CASE" 
+28) Search Panel me Veg Non Veg icon change.

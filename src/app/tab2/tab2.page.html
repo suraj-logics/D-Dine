@@ -1,103 +1,141 @@
-<ion-header [translucent]="true">
-  <ion-toolbar mode='ios'>
-    <ion-title>
-     {{currentPage | titlecase }}
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-<!-- {{currentPage==='order'?'activeSeg':'notActive'}} -->
-<ion-content [fullscreen]="true">
-  <ion-segment (ionChange)="segmentChanged($event)" [value]='currentPage' mode="ios">
-    <ion-segment-button value="cart" color='primary'>
-      <ion-icon name="cart" class=""></ion-icon>
-      <ion-label>Cart</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="order">
-      <ion-icon name="wine" class=""></ion-icon>
-      <ion-label>Order</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="history">
-      <ion-icon name="time" class=""></ion-icon>
-      <ion-label>History</ion-label>
-    </ion-segment-button>
-  </ion-segment>
+<div>
+  <ion-toolbar class="toolbar">
+      Your Orders
+    <ion-icon style="padding-left: 4vw;" routerLink='/tab1' name="arrow-back" slot="start"></ion-icon>
+    <ion-icon style="padding-right: 4vw;" (click)="alertDialog()" name="chatbox-ellipses" slot="end"></ion-icon>
 
-  <div *ngIf='currentPage=="cart"&&CartList.length!=0' style="padding-bottom: 46vw;">
-      <ng-container *ngFor='let cat of CartList;let i=index'>
-      <div class="cartList">
+  </ion-toolbar>
+</div>
+
+<ion-content class="main-content">
+ 
+  <div class="order">
+    <div class="add">
+      <h3>
+        Ongoing Order
+      </h3>
+    </div>
+    <div>
+      <ion-textarea placeholder="write your Description" *ngIf='add' [(ngModel)]="order_description"></ion-textarea>
+    </div>
+    <div class="item" *ngFor='let item of unserved;let i=index'>
+      <ion-grid>
+        <ion-row>
+          <ion-col size='1'>
+            <div class="vegVonVeg">
+              <img src="../../../assets/{{item.is_veg?'veg':'nonVeg'}}.png" alt="">
+            </div>
+          </ion-col>
+          <ion-col size='4' style="position: relative;">
+            <h3>{{item.name| slice:0:13}}<span *ngIf='item&&item.name.length>13'>...</span></h3>
+          </ion-col>
+          <ion-col size='3'>
+            <h6 class="hMargin">₹ {{item.total_price/item.qty}} <span style="color:red">x {{item.qty}}</span></h6>
+          </ion-col>
+          <ion-col size='3'>
+            <h6 class="hMargin">₹ {{item.total_price}}</h6>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- <div class="counter">
         <ion-grid>
           <ion-row>
+            <ion-col class="count" >
+              <p> Qty :</p>
+            </ion-col>
+            <ion-col  class="count" >
+              <p>{{item.qty}}</p>
+            </ion-col>
             
-            <ion-col size='3'>
-             <div class='img-div'>
-              <img  [src]="cat.obj&&cat.obj.image?cat.obj.image:'../../../assets/no-item-image.svg'">
-             </div>
-            </ion-col>
-            <ion-col size='8' class="col1" >
-              <h2>{{cat.obj.name| slice:0:13}}<span *ngIf='cat.obj&&cat.obj.name.length>13'>...</span></h2>
-              <p class="p">₹ {{cat.obj.price}}</p>
-              <div>
-              </div>
-              <ion-grid class="choice">
-                <ion-row class="choice">
-                  <ng-container >
-                  <ion-col size="12" >
-                    <ion-label>{{cat.obj.description | slice:0:22}}<span *ngIf='cat.obj.description&&cat.obj.description.length>22'>..</span></ion-label>
-                  </ion-col>
-                  
-                </ng-container>
-                </ion-row>
-              </ion-grid>
-            </ion-col>
-            <ion-col size='1'>
-             
-             </ion-col>
           </ion-row>
-        </ion-grid> 
+        </ion-grid>
       
-        <div class="counter">
-          <ion-grid>
-            <ion-row>
-              <ion-col class="plus">
-                <button class="btn ion-activatable ripple-parent"  (click)='order(false,i)'>-
-                  <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-                 </button>
-                
-              </ion-col>
-              <ion-col  class="count">
-                <p>{{cat.obj.qty}}</p>
-              </ion-col>
-              <ion-col class="minus">
-                <button class="btn ion-activatable ripple-parent" (click)='order(true,i)' >+
-                  <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-                 </button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        
-        </div>
-       
-      </div>
-  </ng-container>
-</div>
-  
-   <div class="noOrder"  *ngIf='currentPage=="order" && Orders.length==0'>
-    <img src="../../assets/noOrder.png" alt="">
-    <p>You don't have any active order</p>
-    <button class="button" (click)='move()'>Order Now</button>
+      </div> -->
+      
+    </div>
+    <div class="item" *ngFor='let item of served;let i=index'>
+      <ion-grid>
+        <ion-row>
+          <ion-col size='1'>
+            <div class="vegVonVeg">
+              <img src="../../../assets/{{item.is_veg?'veg':'nonVeg'}}.png" alt="">
+            </div>
+          </ion-col>
+          <ion-col size='4' style="position: relative;">
+            <h3>{{item.name| slice:0:13}}<span *ngIf='item&&item.name.length>13'>...</span></h3>
+          </ion-col>
+          <ion-col size='3'>
+            <h6 class="hMargin">₹ {{item.total_price/item.qty}} <span style="color:red">x {{item.qty}}</span></h6>
+          </ion-col>
+          <ion-col size='3'>
+            <h6 class="hMargin">₹ {{item.total_price}}</h6>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- <div class="counter">
+        <ion-grid>
+          <ion-row>
+            <ion-col class="count" >
+              <p> Qty :</p>
+            </ion-col>
+            <ion-col  class="count" >
+              <p>{{item.qty}}</p>
+            </ion-col>
+            
+          </ion-row>
+        </ion-grid>
+      
+      </div> -->
+      
+    </div>
+    <div class="Total">
+      <ion-grid>
+        <ion-row>
+          <ion-col size='8'>
+            <h3>Item Total</h3>
+          </ion-col>
+          <ion-col size='4'>
+            <h6>₹ {{total}}</h6>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="Total" style="border: none;">
+      <ion-grid>
+        <ion-row>
+          <ion-col size='8'>
+            <h3 style="color:var(--ion-gray);">Taxes</h3>
+          </ion-col>
+          <ion-col size='4'>
+            <h6 style="color:var(--ion-gray);">₹ {{tax}}</h6>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="Total">
+      <ion-grid>
+        <ion-row>
+          <ion-col size='8'>
+            <h3>Grand Total</h3>
+          </ion-col>
+          <ion-col size='4'>
+            <h6>₹ {{grand}}</h6>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+   
   </div>
-
-
-   <div class="noCart noOrder" *ngIf='currentPage=="cart" && CartList.length==0'>
-    <img src="../../assets/boul.png" alt="">
-    <p>Your cart is empty</p>
-    <button class="button" (click)='move()'>Order Now</button>
-  </div>
-  <div class="noCart noOrder" *ngIf='currentPage=="history" && History.length==0'>
-    <img src="../../assets/history.png" alt="">
-    <p>Your don't have any history</p>
-  </div>
-  <ion-fab-button class="Track-fab" *ngIf='currentPage=="cart" && CartList.length!=0'   >
-    <ion-icon name="aperture-sharp"></ion-icon>
-  </ion-fab-button>
 </ion-content>
+<div style="text-align: center;">
+  <ion-grid>
+    <ion-row class="pay" >
+      <ion-col size='6'>
+        <button class="button"  style="width: 100%; margin-top: 0;" routerLink='/tab1'>Add More Item</button>
+      </ion-col>
+      <ion-col size='6'>
+        <button class="button" style="width: 100%; margin-top: 0;" (click)='presentAlertConfirm() '>End Dine & Pay</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

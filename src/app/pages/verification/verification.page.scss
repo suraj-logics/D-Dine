@@ -129,7 +129,7 @@ margin-bottom: 0%!important;
     letter-spacing: -0.04em;
     /* color: #020814; */
     font-family: Eina, "Helvetica Neue", Helvetica, sans-serif !important;
-    color:#fdec33;
+    color:var(--ion-theme);;
 }
 
 .loginBtn {
@@ -266,8 +266,8 @@ margin-bottom: 0%!important;
     margin-top: 10vw !important;
     width: 90% !important;
     height: 12vw;
-    border: 2px solid #ffc409;
-    color: #ffc409;
+    border: 2px solid var(--ion-theme);
+    color: var(--ion-theme);
     font-size: 5vw;
     font-weight: 600;
 }

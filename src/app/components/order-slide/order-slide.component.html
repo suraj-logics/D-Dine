@@ -1,28 +1,23 @@
 
 <ion-content class="main-content">
   <div class="header">
-    <ion-icon name="arrow-back-outline" (click)="CM.dismissModel()" slot="start"></ion-icon>
-    <h1>Your Order</h1>
+  <div class="toggle"></div>
+    <h1>Your Cart</h1>
   </div>
  <div style="height: 10%;"></div>
   <div class="order">
-    <div class="add">
-      <h3>
-        Add Description  
-      </h3>
-      <ion-fab-button class="fab" slot="end" (click)="addText()"><ion-icon name="{{add?'close-outline':'add-outline'}}"></ion-icon></ion-fab-button> 
-    </div>
-    <div>
-      <ion-textarea placeholder="write your Description" *ngIf='add' [(ngModel)]="order_description"></ion-textarea>
-    </div>
+   
     <div class="item" *ngFor='let cat of orderItems;let i=index'>
       <ion-grid>
         <ion-row>
-          <ion-col size='2'>
-            <img [src]="cat.obj&&cat.obj.image?cat.obj.image:'../../../assets/no-item-image.svg'" alt="">
+          <ion-col size='1'>
+            <div class="vegVonVeg">
+              <img src="../../../assets/{{cat.obj.is_veg?'veg':'nonVeg'}}.png" alt="">
+            </div>
           </ion-col>
-          <ion-col size='7'>
+          <ion-col size='8' style="position: relative;">
             <h3>{{cat.obj.name| slice:0:13}}<span *ngIf='cat.obj&&cat.obj.name.length>13'>...</span></h3>
+            <h4>₹ {{cat.obj.price}}</h4>
           </ion-col>
           <ion-col size='3'>
             <h6>₹ {{cat.obj.price*cat.obj.qty}}</h6>
@@ -50,6 +45,10 @@
         </ion-grid>
       
       </div>
+      
+    </div>
+    <div>
+      <ion-textarea placeholder="Add your description"  [(ngModel)]="order_description"></ion-textarea>
     </div>
     <div class="Total">
       <ion-grid>
@@ -64,7 +63,7 @@
       </ion-grid>
     </div>
     <div style="text-align: center;">
-      <button class="button" style="margin-bottom: 11vw;" (click)='orderNow()'>Order</button>
+      <button class="button" style="margin-bottom: 11vw;" (click)='orderNow()'>Place Order</button>
     </div>
   </div>
 </ion-content>

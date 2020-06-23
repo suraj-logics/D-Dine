@@ -16,18 +16,17 @@ export class OrderService {
     params = params.append('role', role);
     params = params.append('restaurant_id', '82eb84862cbfe6');
     if(string!='')params = params.append('string', string);
-    params = params.append('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjgyZWI4NDg2MmNiZmU2In0.NOlL0F6fU22xEc23UKK4WNJz49sG0hDR9wlaqORRnEY');
+    params = params.append('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjgyZWI4NDg2MmNiZmU2IiwidG9rZW5fcm9sZSI6InJlc3RhdXJhbnRfaWQifQ.VCu1EYc8x1Fgy8vD-VdkY4iqFUntXzOwtn5XRHZ5Rjg');
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.get<any>(environment.api_url + '/merchant/menu', { params: params });
   }
 
   order(data:any): Observable<any> {
-    data['restaurant_id'] = "036b2b50-76a1-31dc-94e7-b17af7fbc47d"
-    data['user_id'] = "d509dfb6-eca8-3223-b81e-0aa6f3b0e8cf"
-    //let user_time_id = "d509dfb6-eca8-3223-b81e-0aa6f3b0e8cf_06_06_2020_11_05_08"
+    data['restaurant_id'] = "82eb84862cbfe6"
+    data['user_id'] =  JSON.parse(localStorage.getItem('current-user')).id;
     data['order_for'] = "table"
-    data ['table_no']= "1"
-    console.log(data,'order data')
+    if(localStorage.getItem('user_time_id'))data['user_time_id']=localStorage.getItem('user_time_id');
+    data ['table_no']= localStorage.getItem('table')?localStorage.getItem('table'):'2';
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.post(environment.api_url + '/order', data, httpOptions);
   }
@@ -62,5 +61,25 @@ export class OrderService {
 
   payNow(data){
     window.open('upi://pay?pa=pmcares@sbi&pn=PM%20CARES&mc=9400&am='+data.amount+'&cu=INR&tn=App Payment')
+  }
+
+  onGoing(){
+    // Begin assigning parameters
+    let offData = {'user_time_id':  localStorage.getItem('user_time_id'),'offset_minutes': new Date().getTimezoneOffset()}
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    return this.http.post(environment.api_url + '/order/transaction-history',offData,httpOptions);
+  }
+
+  Feedback(feedback,rate){
+    // Begin assigning parameters
+    let feedbackData = {
+      "restaurant_id": "82eb84862cbfe6",
+      "user_time_id": localStorage.getItem('user_time_id'),
+      "user_id": JSON.parse(localStorage.getItem('current-user')).id,
+      "feedback": feedback,
+      "feedback_rating": rate
+    }
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    return this.http.post(environment.api_url + '/user/feedback',feedbackData,httpOptions);
   }
 }
